@@ -18,7 +18,8 @@
     "url": "https://github.com/watson-developer-cloud/movie-assistant-nodejs/issues"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./training/setup.js && node app.js",
+    "train": "node ./training/setup.js"
   },
   "dependencies": {
     "body-parser": "^1.13.2",
@@ -29,7 +30,7 @@
     "helmet": "^1.1.0",
     "moment": "^2.11.1",
     "q": "^1.4.1",
-    "request": "^2.67.0",
+    "request": "^2.69.0",
     "watson-developer-cloud": "^1.2.0"
   }
 }

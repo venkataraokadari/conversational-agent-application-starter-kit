@@ -17,10 +17,11 @@
 'use strict';
 
 var watson  = require('watson-developer-cloud');
+var fs = require('fs');
 
-var DIALOG_ID = process.env.DIALOG_ID || '<dialog-id>';
-var CLASSIFIER_ID = process.env.CLASSIFIER_ID || '<classifier-id>';
-var TMDB_API_KEY = process.env.TMDB_API_KEY || '<tmdb-api-key>';
+var DIALOG_ID = fs.readFileSync('keys/dialog_id', 'utf8');
+var CLASSIFIER_ID = fs.readFileSync('keys/classifier_id', 'utf8');
+var TMDB_API_KEY = process.env.TMDB_API_KEY || 'TMDB_API_KEY';
 
 module.exports = {
   dialog : watson.dialog({

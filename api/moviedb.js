@@ -84,7 +84,7 @@ module.exports = function(key) {
   var tmdbRequest = request.defaults({
     qs: {api_key: key}
   });
-
+  
   // initialize the genres array
   var genres = [];
   tmdbRequest(GENRE_URL, function(err, resp, body) {

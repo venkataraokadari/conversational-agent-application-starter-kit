@@ -21,6 +21,7 @@ var express  = require('express'),
   extend     = require('util')._extend,
   Q          = require('q');
 
+
 // Bootstrap application settings
 require('./config/express')(app);
 
@@ -135,9 +136,11 @@ app.get('/api/movies', function(req, res, next) {
   .catch(next);
 });
 
+
 // error-handler application settings
 require('./config/error-handler')(app);
 
 var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port);
-console.log('listening at:', port);
+var pkg = require('./package.json')
+console.log('\n', pkg.name+ ':'+ pkg.version, 'listening at:', port);
