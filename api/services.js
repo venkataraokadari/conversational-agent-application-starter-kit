@@ -19,6 +19,10 @@
 var watson  = require('watson-developer-cloud'),
   fs        = require('fs'),
   trim      = require('trim');
+
+var dialogFile = __dirname + '/../training/dialog_id';
+var classifierFile = __dirname + '/../training/classifier_id';
+
 // This application requires 3 ids to work propertly
 
 // 1. TMDB API key that can be obtained in https://www.themoviedb.org/documentation/api
@@ -26,13 +30,13 @@ var TMDB_API_KEY = process.env.TMDB_API_KEY || '';
 
 // 2. dialog id - see training/setup.js
 var DIALOG_ID = 'TYPE DIALOG ID HERE';
-if (fs.existsSync(__dirname + '/training/dialog_id'))
-  DIALOG_ID = trim(fs.readFileSync(__dirname + '/training/dialog_id', 'utf8'));
+if (fs.existsSync(dialogFile))
+  DIALOG_ID = trim(fs.readFileSync(dialogFile, 'utf8'));
 
 // 3. classifier id - see training/setup.js
 var CLASSIFIER_ID = 'TYPE CLASSIFIER ID HERE';
-if (fs.existsSync(__dirname + '/training/cclassifier_id'))
-  CLASSIFIER_ID = trim(fs.readFileSync(__dirname + '/training/classifier_id', 'utf8'));
+if (fs.existsSync(classifierFile))
+  CLASSIFIER_ID = trim(fs.readFileSync(classifierFile, 'utf8'));
 
 
 module.exports = {

@@ -21,6 +21,7 @@ var express  = require('express'),
   extend     = require('util')._extend,
   pkg        = require('./package.json'),
   fs         = require('fs'),
+  trim       = require('trim'),
   Q          = require('q');
 
 
@@ -155,13 +156,13 @@ app.get('/api/movies', function(req, res, next) {
 app.get('/api/services', function(req, res) {
   var services = {};
 
-  fs.readFile('training/dialog_id', 'utf8', function(error, data){
+  fs.readFile(__dirname +'/training/dialog_id', 'utf8', function(error, id){
     if (!error)
-      services.dialog_id = data;
+      services.dialog_id = trim(id);
 
-    fs.readFile('training/classifier_id', 'utf8', function(error, data){
+    fs.readFile(__dirname +'/training/classifier_id', 'utf8', function(error, id){
       if (!error)
-        services.classifier_id = data;
+        services.classifier_id = trim(id);
 
       res.json(services);
     });
@@ -175,4 +176,4 @@ var port = process.env.VCAP_APP_PORT || 3000;
 var host = process.env.VCAP_APP_HOST || 'localhost';
 app.listen(port);
 
-console.log(pkg.name+ ':'+ pkg.version, host+':'+port);
+console.log(pkg.name + ':' + pkg.version, host + ':' + port);
