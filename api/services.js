@@ -16,12 +16,24 @@
 
 'use strict';
 
-var watson  = require('watson-developer-cloud');
-var fs = require('fs');
+var watson  = require('watson-developer-cloud'),
+  fs        = require('fs'),
+  trim      = require('trim');
+// This application requires 3 ids to work propertly
 
-var DIALOG_ID = fs.readFileSync('keys/dialog_id', 'utf8');
-var CLASSIFIER_ID = fs.readFileSync('keys/classifier_id', 'utf8');
-var TMDB_API_KEY = process.env.TMDB_API_KEY || 'TMDB_API_KEY';
+// 1. TMDB API key that can be obtained in https://www.themoviedb.org/documentation/api
+var TMDB_API_KEY = process.env.TMDB_API_KEY || '';
+
+// 2. dialog id - see training/setup.js
+var DIALOG_ID = 'TYPE DIALOG ID HERE';
+if (fs.existsSync(__dirname + '/training/dialog_id'))
+  DIALOG_ID = trim(fs.readFileSync(__dirname + '/training/dialog_id', 'utf8'));
+
+// 3. classifier id - see training/setup.js
+var CLASSIFIER_ID = 'TYPE CLASSIFIER ID HERE';
+if (fs.existsSync(__dirname + '/training/cclassifier_id'))
+  CLASSIFIER_ID = trim(fs.readFileSync(__dirname + '/training/classifier_id', 'utf8'));
+
 
 module.exports = {
   dialog : watson.dialog({
@@ -31,7 +43,8 @@ module.exports = {
     path: { dialog_id: DIALOG_ID }
   }),
 
-  movieDB: require('./moviedb')(TMDB_API_KEY),
+  // if the API key for TMDB wasn't provided use the mock module to mimic the API
+  movieDB: require(TMDB_API_KEY ? './moviedb' : './moviedb-mock')(TMDB_API_KEY),
 
   classifier: watson.natural_language_classifier({
     username: '<username>',

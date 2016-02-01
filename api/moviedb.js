@@ -45,6 +45,17 @@ function getTrailer(movie) {
 }
 
 /**
+ * Returns the Popularity only if the movie has more than 10 votes
+ */
+function getPopularity(movie) {
+  if (movie.vote_count >= 10) {
+    return movie.vote_average;
+  } else {
+    return -1;
+  }
+}
+
+/**
  * Returns the US release information
  */
 function getUSRelease(movie) {
@@ -84,7 +95,7 @@ module.exports = function(key) {
   var tmdbRequest = request.defaults({
     qs: {api_key: key}
   });
-  
+
   // initialize the genres array
   var genres = [];
   tmdbRequest(GENRE_URL, function(err, resp, body) {
@@ -170,7 +181,7 @@ module.exports = function(key) {
           overview: body.overview,
           runtime: body.runtime,
           homepageUrl: body.homepage,
-          popularity: body.popularity,
+          popularity: getPopularity(body),
           posterPath: getPoster(body),
           trailerUrl: getTrailer(body),
           certification: getUSRelease(body).certification || '',

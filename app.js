@@ -19,6 +19,8 @@
 var express  = require('express'),
   app        = express(),
   extend     = require('util')._extend,
+  pkg        = require('./package.json'),
+  fs         = require('fs'),
   Q          = require('q');
 
 
@@ -36,6 +38,11 @@ var updateProfile = Q.nfbind(apis.dialog.updateProfile.bind(apis.dialog));
 var getIntent = Q.nfbind(apis.classifier.classify.bind(apis.classifier));
 var searchMovies = Q.nfbind(apis.movieDB.searchMovies.bind(apis.movieDB));
 var getMovieInformation = Q.nfbind(apis.movieDB.getMovieInformation.bind(apis.movieDB));
+
+var errorWithClassifierService = function (error){
+  console.log('Error using the Natural Language Classifier service');
+  console.log(error.description || error);
+};
 
 // create the conversation
 app.post('/api/create_conversation', function(req, res, next) {
@@ -60,41 +67,45 @@ app.post('/api/conversation', function(req, res, next) {
         { name:'Class2_Confidence', value: classes[1].confidence }
       ]
     };
-    return updateProfile(profile).then(function() {
-      return converse(req.body)
-      .then(function(result) {
-        var conversation = result[0];
-        if (searchNow(conversation.response.join(' '))) {
-          var searchParameters = parseSearchParameters(conversation);
-          conversation.response = conversation.response.slice(0, 1);
-          return searchMovies(searchParameters)
-          .then(function(searchResult) {
-            var profile = {
-              client_id: req.body.client_id,
-              name_values: [
-                { name:'Current_Index', value: searchResult.curent_index },
-                { name:'Total_Pages', value: searchResult.total_pages },
-                { name:'Num_Movies', value: searchResult.total_movies }
-              ]
-            };
-            return updateProfile(profile)
-            .then(function() {
-              var params = extend({}, req.body);
-              if (['new','repeat'].indexOf(searchParameters.page) !== -1)
-                params.input = PROMPT_MOVIES_RETURNED;
-              else
-                params.input = PROMPT_CURRENT_INDEX;
+    return updateProfile(profile);
+  })
+  .catch(errorWithClassifierService)
+  .then(function() {
+    return converse(req.body)
+    .then(function(result) {
+      var conversation = result[0];
+      if (searchNow(conversation.response.join(' '))) {
+        var searchParameters = parseSearchParameters(conversation);
+        conversation.response = conversation.response.slice(0, 1);
+        return searchMovies(searchParameters)
+        .then(function(searchResult) {
+          console.log('searchMovies', JSON.stringify(searchResult, null, 2));
+          var profile = {
+            client_id: req.body.client_id,
+            name_values: [
+              { name:'Current_Index', value: searchResult.curent_index },
+              { name:'Total_Pages', value: searchResult.total_pages },
+              { name:'Num_Movies', value: searchResult.total_movies }
+            ]
+          };
+          return updateProfile(profile)
+          .catch(errorWithClassifierService)
+          .finally(function() {
+            var params = extend({}, req.body);
+            if (['new','repeat'].indexOf(searchParameters.page) !== -1)
+              params.input = PROMPT_MOVIES_RETURNED;
+            else
+              params.input = PROMPT_CURRENT_INDEX;
 
-              return converse(params)
-              .then(function(result) {
-                res.json(extend(result[0], searchResult));
-              });
+            return converse(params)
+            .then(function(result) {
+              res.json(extend(result[0], searchResult));
             });
           });
-        } else {
-          res.json(conversation);
-        }
-      });
+        });
+      } else {
+        res.json(conversation);
+      }
     });
   })
   .catch(next);
@@ -113,6 +124,7 @@ function parseSearchParameters(conversation) {
 app.get('/api/movies', function(req, res, next) {
   getMovieInformation(req.query)
   .then(function(movie){
+    console.log('getMovieInformation', JSON.stringify(movie,null,2));
     var profile = {
       client_id: req.body.client_id,
       name_values: [
@@ -137,10 +149,30 @@ app.get('/api/movies', function(req, res, next) {
 });
 
 
+/**
+ * Returns the classifier_id and dialog_id to the user.
+ */
+app.get('/api/services', function(req, res) {
+  var services = {};
+
+  fs.readFile('training/dialog_id', 'utf8', function(error, data){
+    if (!error)
+      services.dialog_id = data;
+
+    fs.readFile('training/classifier_id', 'utf8', function(error, data){
+      if (!error)
+        services.classifier_id = data;
+
+      res.json(services);
+    });
+  });
+});
+
 // error-handler application settings
 require('./config/error-handler')(app);
 
 var port = process.env.VCAP_APP_PORT || 3000;
+var host = process.env.VCAP_APP_HOST || 'localhost';
 app.listen(port);
-var pkg = require('./package.json')
-console.log('\n', pkg.name+ ':'+ pkg.version, 'listening at:', port);
+
+console.log(pkg.name+ ':'+ pkg.version, host+':'+port);

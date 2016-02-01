@@ -16,11 +16,11 @@
 
 'use strict';
 
-var watson  = require('watson-developer-cloud');
+var watson = require('watson-developer-cloud');
 var fs = require('fs');
 
-var dialogFile = __dirname + '/../keys/dialog_id';
-var classifierFile = __dirname + '/../keys/classifier_id';
+var dialogFile = __dirname + './dialog_id';
+var classifierFile = __dirname + './classifier_id';
 
 var dialogTrainingFile = __dirname + '/dialog_and_classifier.xml';
 var classifierTrainingFile = __dirname + '/classifier_training.csv';
@@ -41,7 +41,7 @@ var classifierService = watson.natural_language_classifier({
 
 console.log('Training...');
 
-if (fs.readFileSync(dialogFile, 'utf8') === '') {
+if (!fs.existsSync(dialogFile) || fs.readFileSync(dialogFile, 'utf8') === '') {
   dialogService.createDialog({
     name: 'movies-' + new Date().valueOf(),
     file: fs.createReadStream(dialogTrainingFile)
@@ -49,7 +49,7 @@ if (fs.readFileSync(dialogFile, 'utf8') === '') {
     if (err) {
       console.log('Error creating the dialog, did you create the service?', err);
       process.exit(1);
-    } else{
+    } else {
       fs.writeFileSync(dialogFile, dialog.dialog_id);
       console.log('   Dialog trained');
     }
@@ -58,13 +58,13 @@ if (fs.readFileSync(dialogFile, 'utf8') === '') {
   console.log('   Dialog already trained');
 }
 
-if (fs.readFileSync(classifierFile, 'utf8') === '') {
+if (!fs.existsSync(classifierFile) || fs.readFileSync(classifierFile, 'utf8') === '') {
   classifierService.create({
     language: 'en',
     name: 'movies-' + new Date().valueOf(),
     training_data: fs.createReadStream(classifierTrainingFile)
   }, function(err, classifier) {
-    if (err){
+    if (err) {
       console.log('Error creating the classifier, did you create the service?', err);
       process.exit(1);
     } else {
