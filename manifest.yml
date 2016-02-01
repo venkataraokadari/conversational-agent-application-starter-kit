@@ -12,7 +12,7 @@ applications:
   - dialog-service
   - classifier-service
   name: movie-assistant
-  command: node app.js
+  command: npm start
   path: .
   memory: 512M
   env:
