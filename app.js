@@ -40,11 +40,6 @@ var getIntent = Q.nfbind(apis.classifier.classify.bind(apis.classifier));
 var searchMovies = Q.nfbind(apis.movieDB.searchMovies.bind(apis.movieDB));
 var getMovieInformation = Q.nfbind(apis.movieDB.getMovieInformation.bind(apis.movieDB));
 
-var errorWithClassifierService = function (error){
-  console.log('Error using the Natural Language Classifier service');
-  console.log(error.description || error);
-};
-
 // create the conversation
 app.post('/api/create_conversation', function(req, res, next) {
   converse(req.body)
@@ -70,7 +65,10 @@ app.post('/api/conversation', function(req, res, next) {
     };
     return updateProfile(profile);
   })
-  .catch(errorWithClassifierService)
+  .catch(function(error ){
+    console.log('Error using the Natural Language Classifier service');
+    console.log(error.description || error);
+  })
   .then(function() {
     return converse(req.body)
     .then(function(result) {
@@ -90,8 +88,7 @@ app.post('/api/conversation', function(req, res, next) {
             ]
           };
           return updateProfile(profile)
-          .catch(errorWithClassifierService)
-          .finally(function() {
+          .then(function() {
             var params = extend({}, req.body);
             if (['new','repeat'].indexOf(searchParameters.page) !== -1)
               params.input = PROMPT_MOVIES_RETURNED;
