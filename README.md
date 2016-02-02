@@ -209,6 +209,8 @@ Here are some links with more inforamtion about the services and links to other 
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/): Get an in-depth knowledge of the Natural Language Classifier service
 * [API Explorer](https://watson-api-explorer.mybluemix.net/apis/natural-language-classifier-v1): Try out the API.
+* [Creating your own classifier](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/get_start.shtml): How to use the API to create and use your own classifier
+
 * [Understanding how Dialog uses the output from the Natural Language Classier](http://heidloff.net/article/cognitive-question-answer-systems-bluemix-watson)
 
 
