@@ -96,7 +96,7 @@
   });
 
   // browser-sync start server
-  gulp.task('browser-sync', ['set-env', 'nodemon'], function() {
+  gulp.task('browser-sync', ['nodemon'], function() {
     browserSync({
       proxy: 'localhost:3000', // local node app address
       port: 5000, // use *different* port than above
@@ -105,7 +105,7 @@
   });
 
   // initiate nodemon
-  gulp.task('nodemon', ['compile'], function(cb) {
+  gulp.task('nodemon', ['set-env'], function(cb) {
     var called = false;
     return nodemon({
       script: 'app.js',
@@ -141,12 +141,14 @@
 
   gulp.task('dist', gulpSequence('clean', 'build'));
 
-  gulp.task('default', ['browser-sync'], function() {
-    gulp.watch([srcFolder + '/images/**/*'], ['images']);
-    gulp.watch([srcFolder + '/styles/**/*.*'], ['compile']);
-    gulp.watch([srcFolder + '/**/*.html'], ['compile']);
-    gulp.watch([srcFolder + '/js/**/*.*'], ['compile']);
-    gulp.watch([srcFolder + '/fonts/**/*.*'], ['fonts']);
+  gulp.task('default', function(cb) {
+    gulpSequence('build', 'browser-sync', function() {
+      gulp.watch([srcFolder + '/images/**/*.*'], ['images']);
+      gulp.watch([srcFolder + '/fonts/**/*.*'], ['fonts']);
+      gulp.watch([srcFolder + '/styles/**/*.*'], ['build']);
+      gulp.watch([srcFolder + '/modules/**/*.*'], ['build']);
+      cb();
+    });
   });
 
 }());

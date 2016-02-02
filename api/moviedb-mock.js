@@ -32,14 +32,14 @@ module.exports = function() {
         total_movies: 3,
         curent_index: 3,
         movies: [{
-          movieId: 140607,
-          movieName: 'Star Wars: The Force Awakens'
+          movie_id: 140607,
+          movie_name: 'Star Wars: The Force Awakens'
         }, {
-          movieId: 365222,
-          movieName: 'Ip Man 3'
+          movie_id: 365222,
+          movie_name: 'Ip Man 3'
         }, {
-          movieId: 140300,
-          movieName: 'Kung Fu Panda 3'
+          movie_id: 140300,
+          movie_name: 'Kung Fu Panda 3'
         }]
       };
       return callback(null, results);
@@ -50,18 +50,17 @@ module.exports = function() {
      */
     getMovieInformation: function(params, callback) {
       var movie= {
-        movieId: 140607,
-        movieName: 'Star Wars: The Force Awakens',
+        fake: true,
+        movie_id: 140607,
+        movie_name: 'Star Wars: The Force Awakens',
         runtime: 136,
-        homepageUrl: 'http://www.starwars.com/films/star-wars-episode-vii',
         popularity: 8.5,
-        posterPath: 'http://image.tmdb.org/t/p/w300//fYzpM9GmpBlIC893fNjoWCwE24H.jpg',
-        trailerUrl: 'https://www.youtube.com/embed/sGbxmsDFVnE?controls=0&amp;showinfo=0',
+        poster_path: 'http://image.tmdb.org/t/p/w300//fYzpM9GmpBlIC893fNjoWCwE24H.jpg',
+        trailer_url: 'https://www.youtube.com/embed/sGbxmsDFVnE?controls=0&amp;showinfo=0',
         certification: 'PG-13',
-        certificationCountry: 'US',
-        releaseDateStr: '2015-12-14',
-        overview: 'Thirty years after defeating the Galactic Empire, Han Solo and his allies ' +
-          'face a new threat from the evil Kylo Ren and his army of Stormtroopers.'
+        release_date: '2015-12-14',
+        overview: 'This is static information, check the README file in Github to '+
+        'know how to use real data from themoviedb.com'
       };
 
       return callback(null, movie);

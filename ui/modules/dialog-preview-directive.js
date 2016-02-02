@@ -37,8 +37,8 @@
                         '<div class="dialog-preview-scroll">' +
                         '<iframe id="trailerIFrame" class="dialog-trailer" src="{{trustedUrl}}" allowfullscreen frameborder="0"></iframe>' +
                         '<h3 id="noTrailerText" class="dialog-trailer-missing dialog-trailer-hidden">No Preview Available</h3>' +
-                        '<div class="dialog-movie-info-spacing"><div class="dialog-movie-name-rating-spacing"></div><span class="dialog-movie-name-rating"><h3 class="dialog-movie-name">{{movie.movieName}}</h3>' +
-                        '<span class="dialog-rating-label"><img src="{{certification}}"></span></span>' +
+                        '<div class="dialog-movie-info-spacing"><div class="dialog-movie-name-rating-spacing"></div><span class="dialog-movie-name-rating"><h3 class="dialog-movie-name">{{movie.movie_name}}</h3>' +
+                        '<span class="dialog-rating-label"><img ng-src="{{certification}}"></span></span>' +
                         '<favorite class="dialog-favorite-lg" content="{{movie}}"></favorite>' +
                         '<h5 class="dialog-release-label" ng-hide="hideReleaseDate">Release date:<span class="dialog-release-date"> {{movie.localizedDate}}</span></h5>' +
                         '<showtoggle></showtoggle><div class="dialog-rating-spacing"></div><rating></rating></div></div>',
@@ -89,11 +89,11 @@
                     var div = $('#noTrailerText');
                     //_.assign(scope.movie, movie);
                     scope.movie = movie;
-                    if (!movie.trailerUrl && !movie.movieName && !movie.overview) {
+                    if (!movie.trailer_url && !movie.movie_name && !movie.overview) {
                         return;
                     }
-                    if (movie.trailerUrl) {
-                        url = $sce.trustAsResourceUrl(movie.trailerUrl);
+                    if (movie.trailer_url) {
+                        url = $sce.trustAsResourceUrl(movie.trailer_url);
                         scope.trustedUrl = url;
                         iframe.removeClass('dialog-trailer-hidden');
                         div.addClass('dialog-trailer-hidden');
@@ -103,8 +103,8 @@
                         iframe.addClass('dialog-trailer-hidden');
                         div.removeClass('dialog-trailer-hidden');
                     }
-                    if (movie.releaseDate) {
-                        date = new Date(movie.releaseDate);
+                    if (movie.release_date) {
+                        date = new Date(movie.release_date);
                         movie.localizedDate = monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
                         scope.hideReleaseDate = false;
                     }

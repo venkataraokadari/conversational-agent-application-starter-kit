@@ -84,8 +84,8 @@
          * @public
          */
         self.selectMovie = function (movie) {
-            var movieName = null;
-            var movieId = null;
+            var movie_name = null;
+            var movie_id = null;
             var popularity = null;
             var result = null;
             var keys = null;
@@ -93,14 +93,14 @@
             var query = null;
             var scrollable = null;
             if (movie) {
-                movieName = movie.movieName;
-                movieId = movie.movieId;
+                movie_name = movie.movie_name;
+                movie_id = movie.movie_id;
                 popularity = movie.popularity;
             }
             else {
                 return null;
             }
-            result = _.find(self.selectedMovies, { 'movieId': movieId, 'movieName': movieName });
+            result = _.find(self.selectedMovies, { 'movie_id': movie_id, 'movie_name': movie_name });
             if (result) {
                 keys = _.keys(self.selectedMovie);
                 if (keys) {
@@ -111,7 +111,7 @@
                 _.assign(self.selectedMovie, result);
                 //We don't need to wait for a response here, we already have cached info.
                 //We are just notifying WDS of the selection.
-                dialogService.getMovieInfo(movieName, movieId, popularity);
+                dialogService.getMovieInfo(movie_name, movie_id, popularity);
                 scrollable = $('#scrollable-div');
                 if (scrollable[0]) {
                     scrollable.animate({ 'scrollTop': scrollable[0].scrollHeight }, 1000);
@@ -127,7 +127,7 @@
                 return result;
             }
             else {
-                query = dialogService.getMovieInfo(movieName, movieId, popularity);
+                query = dialogService.getMovieInfo(movie_name, movie_id, popularity);
                 query.then(function (segment) {
                     if (segment.error === true) {
                         setState(states.chatting);
@@ -199,27 +199,27 @@
          *
          * @public
          * @param movie - a object representing a movie which is to be added to the list of favorites.
-         *                The object must have a movieId and movieName property.
+         *                The object must have a movie_id and movie_name property.
          * @param add - a flag which determines whether the provided movie is to be added or removed to/from
          *              the list of favorites. A value of true signaling the movie is to be added, false to
          *              remove the movie from the array.
          */
         self.setAsFavorite = function (movie, add) {
-            var result = _.find(self.selectedMovies, { 'movieId': movie.movieId, 'movieName': movie.movieName });
+            var result = _.find(self.selectedMovies, { 'movie_id': movie.movie_id, 'movie_name': movie.movie_name });
             if (result) {
                 result.favorite = add;
             }
-            if (movie && self.selectedMovie.movieName === movie.movieName && self.selectedMovie.movieId === movie.movieId) {
+            if (movie && self.selectedMovie.movie_name === movie.movie_name && self.selectedMovie.movie_id === movie.movie_id) {
                 self.selectedMovie.favorite = add;
             }
             if (movie && !add) {
-                _.remove(self.favorites, { 'movieId': movie.movieId, 'movieName': movie.movieName });
+                _.remove(self.favorites, { 'movie_id': movie.movie_id, 'movie_name': movie.movie_name });
                 if (self.favorites.length === 0) {
                     self.showFavorites = false;
                 }
                 return;
             }
-            result = _.find(self.favorites, { 'movieId': movie.movieId, 'movieName': movie.movieName });
+            result = _.find(self.favorites, { 'movie_id': movie.movie_id, 'movie_name': movie.movie_name });
             if (!result && add) {
                 self.favorites.unshift(_.clone(movie));
             }

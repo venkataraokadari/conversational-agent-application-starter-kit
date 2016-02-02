@@ -36,7 +36,7 @@
             'restrict': 'A',
             'link': function (scope, element, attr) {
                 var movie = $parse(attr.content)(scope); //Get the 'movie' object from the content attribute
-                var htmlContent = '<span class="dialog-movie-link">' + movie.movieName + '</span>';
+                var htmlContent = '<span class="dialog-movie-link">' + movie.movie_name + '</span>';
                 var startY = -1;
                 var delayTimeout = null;
                 var clickAction = function (e) {

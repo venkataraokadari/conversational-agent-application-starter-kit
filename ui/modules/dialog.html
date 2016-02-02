@@ -19,7 +19,7 @@
     <header id="dialog-header" class="dialog-header-{{dialogCtrl.state.class}} navbar navbar-fixed-top">
         <div class="dialog-header-inner">
             <favorite-indicator class="{{favoriteIndicatorClass}}">
-                <div class="dialog-toggle-favorites-view" 
+                <div class="dialog-toggle-favorites-view"
                      ng-click="dialogCtrl.toggleFavoritesPanel()"
                      style="{{(dialogCtrl.getFavorites() != null && dialogCtrl.getFavorites().length > 0) ? 'cursor: pointer' : ''}}">
                 </div>
@@ -38,19 +38,19 @@
         </div>
     </div>
     <!--Preview control-->
-    <div id="preview-parent" class="dialog-preview-parent" 
-            ng-if="dialogCtrl.getCurrentMovie() && dialogCtrl.getCurrentMovie().movieName != null">
+    <div id="preview-parent" class="dialog-preview-parent"
+            ng-if="dialogCtrl.getCurrentMovie() && dialogCtrl.getCurrentMovie().movie_name != null">
         <preview class="dialog-preview" content="dialogCtrl.selectedMovie"></preview>
     </div>
     <!--mobile favorites -->
-    <div class="dialog-full-screen-favorites" 
-            ng-if="dialogCtrl.state.key != 'intro' && dialogCtrl.showFavorites && (dialogCtrl.getFavorites() != null && dialogCtrl.getFavorites().length > 0)" 
+    <div class="dialog-full-screen-favorites"
+            ng-if="dialogCtrl.state.key != 'intro' && dialogCtrl.showFavorites && (dialogCtrl.getFavorites() != null && dialogCtrl.getFavorites().length > 0)"
             ng-include="'modules/dialog-full-screen-favorites.html'">
-        
+
     </div>
 
     <!--desktop favorites-->
-    <div class="dialog-favorites-sidebar-parent" 
+    <div class="dialog-favorites-sidebar-parent"
             ng-if="dialogCtrl.state.key != 'intro'"
             ng-include="'modules/dialog-sidebar-favorites.html'"></div>
 
@@ -63,17 +63,17 @@
                         control is too narrow to display the full message -->
                     <div class="dialog-happy-text-{{dialogCtrl.state.class}}">
                                         {{dialogCtrl.state.introText}}
-                   
+
                     </div>
                     <table class="dialog-input-table">
                         <tr>
                             <td class="dialog-input-col">
-                                <input id="question" class="dialog-form-input form-control" 
-                                        type="text" 
-                                        placeholder="{{dialogCtrl.state.placeholder}}" 
+                                <input id="question" class="dialog-form-input form-control"
+                                        type="text"
+                                        placeholder="{{dialogCtrl.state.placeholder}}"
                                         ng-model="dialogCtrl.question" autocorrect="off"
-                                        autocomplete="off" 
-                                        disabled/> 
+                                        autocomplete="off"
+                                        disabled/>
                             </td>
                             <td class="dialog-resize-col" id="resize-footer-col">
                                   <!--test-->

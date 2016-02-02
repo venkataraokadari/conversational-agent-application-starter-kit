@@ -214,7 +214,7 @@
          *
          * @private
          */
-         var getMovieInfo = function (movieName, id, popularity) {
+         var getMovieInfo = function (movie_name, id, popularity) {
              return initChat().then(function (res) {
                return $http({
                  url: '../api/movies',
@@ -222,7 +222,7 @@
                  params: {
                    client_id: res.clientId,
                    conversation_id: res.conversationId,
-                   movie_title: movieName,
+                   movie_title: movie_name,
                    movie_id: id
                  }
                }).then(function (response) {

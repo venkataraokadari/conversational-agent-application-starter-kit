@@ -69,6 +69,13 @@ function getUSRelease(movie) {
 }
 
 /**
+ * Returns the US release date
+ */
+function getReleaseDate(movie) {
+  return getUSRelease(movie).release_date || '';
+}
+
+/**
  * Returns the US movie poster if exits
  */
 function getPoster(movie) {
@@ -147,8 +154,8 @@ module.exports = function(key) {
         .slice(index, index + Math.min(RESULT_SIZE, body.results.length - index))
         .map(function(movie) {
           return {
-            movieId: movie.id,
-            movieName: movie.title
+            movie_id: movie.id,
+            movie_name: movie.title
           };
         });
 
@@ -176,17 +183,15 @@ module.exports = function(key) {
           return callback(err, body);
 
         var movie = {
-          movieId: body.id,
-          movieName: body.title,
+          movie_id: body.id,
+          movie_name: body.title,
           overview: body.overview,
           runtime: body.runtime,
-          homepageUrl: body.homepage,
           popularity: getPopularity(body),
-          posterPath: getPoster(body),
-          trailerUrl: getTrailer(body),
+          poster_path: getPoster(body),
+          trailer_url: getTrailer(body),
           certification: getUSRelease(body).certification || '',
-          certificationCountry: getUSRelease(body).iso_3166_1 || '',
-          releaseDateStr: getUSRelease(body).release_date || body.release_date
+          release_date: getReleaseDate(body)
         };
 
         return callback(null, movie);
