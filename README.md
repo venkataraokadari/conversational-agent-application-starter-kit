@@ -1,12 +1,12 @@
 # Movie Assistant
 
-  This is an small version of [What's in Theaters](https://github.com/watson-developer-cloud/movieapp-dialog) created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] services to create a [Conversational Agent](#pattern-conversational-agent).
+  This is an streamlined version of [What's in Theaters](https://github.com/watson-developer-cloud/movieapp-dialog), created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] services as a [Conversational Agent](#pattern-conversational-agent).
 
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.  
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Notes:** The application will mock data when suggesting movies until you provide an API Key to [themoviedb.com](), see the step 7 In the Getting Started section. The application will automatically train a classifier which takes about 20 minutes so initially you will be only using the Dialog service.
+**Notes:** The application will use mock data for movie suggestions until the user provides an API Key to [themoviedb.com](), see step 7 in the Getting Started section. When the application is first run, it will automatically train a classifier for NLC (Natural Language Classifier).  This process takes about 20 minutes.  While the classifer is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
@@ -30,19 +30,20 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 ### How this app works
 
-Users talk in natural language to the system to find movies that match the search criteria they've specified. The system is built to understand natural language that relates to searching for and selecting movies to watch. For example, saying "I'd like to see a recent R rated drama" causes the system to search the movie repository and to return the names of all R-rated dramas that have been released in the last 30 days.
+This app provides a conversational interface that let's users search for movies based on a set of criteria. This dialog system is built to understand natural language related to searching and selecting movies. For example, "I'd like to see a recent R rated drama" returns the names of all R-rated dramas that have been released in the last 30 days.
 
-The system is designed to obtain the following types of information about movies from users before it searches the repository:
+This dialog system also understands variations of text, which allows users to phrase their responses in many different ways. For example, the system might ask, "Do you want to watch an upcoming movie or one that's playing tonight?" The user can reply with "tonight" or "Show me movies playing currently," and the system understands that the user wants to know about current movies.
+
+The conversation is designed to obtain three pieces of information before searching the movie repository:
 
 * Recency: The system determines whether users want to know about currently playing movies or upcoming movies.
 * Genre: The system understands movie genres, such as action, comedy, and horror.
-* Rating: The system understands movie rating, such as G, PG-13, and R.
+* Rating: The system understands movie ratings, such as G, PG-13, and R.
 
-Users can search across all genres and ratings simply by answering "no" to the corresponding questions. Before the system searches the movie repository, it needs to know whether a user prefers current movies or upcoming movies. The system understands variations of text, so users can rephrase their responses, and the system will still process it. For example, the system might ask, "Do you want to watch an upcoming movie or one that's playing tonight?" Users can say "tonight" or "Show me movies playing currently," and the system understands that both answers mean that users want to know about current movies.
-
+Users can search across all genres and ratings by answering "no" to the corresponding questions. 
 
 ## Getting Started
-If you fork the project and want to push your fork follow the next steps.
+If you've forked the project and want to push your fork, follow these steps.
 
   1. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use.
 
@@ -80,11 +81,11 @@ If you fork the project and want to push your fork follow the next steps.
     $ cf create-service natural_language_classifier standard classifier-service
     ```
 
-  7. Sign up in [themoviedb.com](), get an API key and add it to the app by editing the `api/servies.js` file line 29.
+  7. Sign up at [themoviedb.com]() to get an API key. Add the API key to the app by editing the `api/servies.js` file line 29 to:
     File `api/servies.js`:
 
     ```js
-    var TMDB_API_KEY = process.env.TMDB_API_KEY || '';
+    var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your API Key>;
   	```
   8. Push it live by running the following command:
 
@@ -92,12 +93,12 @@ If you fork the project and want to push your fork follow the next steps.
     $ cf push
     ```
 
-When running for the first time the application will create:
+When running for the first time, the application creates:
 
-  * A dialog flow using: `training/dialog_and_classifier.xml` and write the id in `/training/dialog_id`
-  * A classifier using: `training/classifier_training.csv` and write the id in `/training/classifier_id`
+  * A dialog flow using: `training/dialog_and_classifier.xml` and writes the dialog id in the file `/training/dialog_id`
+  * A classifier using: `training/classifier_training.csv` and writes classifier id in the file `/training/classifier_id`
 
-You can retrieve those ids at [`<application-name>.mybluemix.net/api/services`](). The response will be similar to:
+You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](). The response will be similar to:
 
 ```json
 {
@@ -107,9 +108,9 @@ You can retrieve those ids at [`<application-name>.mybluemix.net/api/services`](
 ```
 
 ## Running the application locally
-  The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/), so you must download and install them as part of the following steps.
+  The application built on [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  The you should download and install them as part of the following steps.
 
-  1. Create a `.env.js` file in the root directory of your project with the next content:
+  1. Create a `.env.js` file in the root directory of your project with the following content:
 
   ```js
   module.exports = {
@@ -132,12 +133,12 @@ You can retrieve those ids at [`<application-name>.mybluemix.net/api/services`](
   })
   };
   ```
-  2. Copy the `username`, `password`, and `url` credentials from your `dialog-service` and `classifier-service` services in Bluemix to the previous file. To see the service credentials, run the following command, where `<application-name>` is the unique name you specified:
+  2. Copy the `username`, `password`, and `url` credentials from your `dialog-service` and `classifier-service` services in Bluemix to the previous file. To see the service credentials, run the following command, where `<application-name>` is the unique name you've specified:
 
     ```sh
     $ cf env <application-name>
     ```
-   You will get something like:
+   Your output should look similar to:
 
     ```sh
     System-Provided:
@@ -174,35 +175,35 @@ You can retrieve those ids at [`<application-name>.mybluemix.net/api/services`](
 
 
 ## Application Starter Kit
-An Application Starter Kit(ASK) is a multi-service Watson sample app built to show common industry 'patterns' and best practices around them.
+An Application Starter Kit(ASK) is a multi-service sample app built to demonstrate common industry 'patterns' and best practices around Watson services.
 
 This sample application highlights one of the industry patterns called [Conversational Agent](#pattern-conversational-agent).
 
 ## Conversational Agent
 
-Make sure you read the [Reference Information](#reference-information) to understand the services involve in this pattern.
+First, make sure you read the [Reference Information](#reference-information) to understand the services involved in this pattern.
 
-This image below shows a flow diagram for a Conversation Agent using the Natural Language Classifier and Dialog services.
+The image below shows a flow diagram for a Conversation Agent using the Natural Language Classifier and the Dialog service.
 <p align="center">
   <img src="docs/demo_architecture.png"/>
 </p>
 
 ### Using the Dialog service and the Natural Language Classifier service
 
-The dialog service uses expert rules to match the user utterance to an intent thus typically yielding high accuracy. The classifier service on the other hand is a statistical system which gives a high recall. So the combination of dialog and classifier, gives a high precision, high accuracy system.
+Since the dialog service uses expert rules to match user inputs to intents, the service typically has high accuracy. The classifier service on the other hand is a statistical system that yields high recall.  Thus, the combination of dialog and natural language classifier creates a high precision, high accuracy system.
 
-The Dialog service only uses the classifier intent when control goes to the default response in the dialog. For a given input sentence, the trained classifier responds with a list of intent classes and confidence scores for each class. Dialog only uses the top two classes to decide how to respond to the user. The following checks are performed by the Dialog service:
+For a given input, the trained natural language classifier responds with a list of intent classes and the corresponding confidence scores. Dialog only uses the top two classes to decide how to proceed with the conversation. The following checks are performed by the Dialog service:
 
  * The USER_INTENT from the Classifier service is considered valid when class(0).confidence >= upper_confidence_threshold.
  * Ask user to confirm the USER_INTENT when upper_confidence_threshold >= class(0).confidence > lower_confidence_threshold.
  * Ask user to disambiguate between USER_INTENT(0) and USER_INTENT(1) when class(0).confidence + class(1).confidence > upper_confidence_threshold.
  * Reply with the default response when none of the previous checks are true.
 
-Where, class(0) is the top class and class(0).confidence is the respective confidence score. Similarly, class(1) is the second best class and class(1).confidence is the respective confidence score. In these checks, upper_confidence_threshold and lower_confidence_threshold are floats 0 - 1, and their values are obtained by running cross-validation tests with the classifier on a given data set.
+Here, class(0) is the top class and class(0).confidence is its confidence score. Similarly, class(1) is the second best class with class(1).confidence being its confidence score. In these checks, upper_confidence_threshold and lower_confidence_threshold are floats 0 - 1, and their values are obtained by running cross-validation tests with the classifier on a given data set.
 
 ---
 
-When creating a conversational agent we first need to understand what the user is trying to do. Is he trying to lookup actors? search for upcoming movies? have an small talk with Watson?. We call that the user is trying to perform *Intent*.  To accomplish this, we'll train the Watson Natural Language Classifier service using various text examples of users making the requests. The servie uses deep machine learning techniques to return the top predicted classes.
+When creating a conversational agent, you should first understand what the user is trying to do. Is he looking up an actor? Is she searching for upcoming movies? Is he simplying looking to have small talk with Watson? We call these the user's *Intent*. To extract the user intent from the user input, we train the Watson Natural Language Classifier using various examples of possible user requests. The servie then uses deep machine learning techniques to return the top predicted classes.
 
 Here is an example of what we will use to train the classifier:
 
@@ -219,15 +220,15 @@ Here is an example of what we will use to train the classifier:
     Robert,GiveName
     I want to look up movie stars,LookupActors
 
-Next, we need any related information required to complete the user's request. To do this, we'll rely on the Dialog service which supports building conversations between a user and an application. The Dialog service will track and store information obtained during the conversation until we have all the info required to complete the task like search for a movie, arctor or director.
+Next, we need to acquire any additional information required to complete the user's request. To do this, we rely on the Dialog service. The Dialog service will track and store information obtained during the conversation until we have all the information required to complete the task.  In the case of our application, it's searching for a movie, an arctor or a director.
 
 ### When to use this pattern
  * You need to perform a task that requires user input and you want to mimic a conversation
  * You want to provide a conversation experience like Siri or Cortana.
 
-### Best practices
- * Write around 10 classes/intent with 15 examples for each. That will provide to the Natural Language Classifier information to build the deep machine learning model that will be used to classify the user input.
- * Define different opening sentences in the dialog flow (.xml file). That will help you to avoid repetitive conversations where you dialog always ask the same questions.
+### Some best practices
+ * When using the Natural Language Classifier, there should be approximately 10 classes.  Each class should have 15 examples of possible user inputs. This provides the service with enough information to build the deep machine learning model that will classify future user inputs.
+ * When using the Dialog service, define different opening sentences in the dialog flow (.xml file). This will prevent repetitive conversations where the dialog always asks the same questions.
  * **TODO:**
 
 ### Reference information
