@@ -1,12 +1,12 @@
 # Movie Assistant
 
-  This is an streamlined version of [What's in Theaters](https://github.com/watson-developer-cloud/movieapp-dialog), created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] services as a [Conversational Agent](#pattern-conversational-agent).
+  This is a streamlined version of [What's in Theaters](https://github.com/watson-developer-cloud/movieapp-dialog), created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] services as a [Conversational Agent](#pattern-conversational-agent).
 
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.  
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Notes:** The application will use mock data for movie suggestions until the user provides an API Key to [themoviedb.com](), see step 7 in the Getting Started section. When the application is first run, it will automatically train a classifier for NLC (Natural Language Classifier).  This process takes about 20 minutes.  While the classifer is being trained, the user can only interact with the Dialog service.
+**Notes:** The application uses mock data for movie suggestions until the user provides an API Key to [themoviedb.com](). See step 7 in the Getting Started section. When the application is first run, it will automatically train a classifier for NLC (Natural Language Classifier). This process takes about 20 minutes. While the classifer is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
@@ -30,7 +30,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 ### How this app works
 
-This app provides a conversational interface that let's users search for movies based on a set of criteria. This dialog system is built to understand natural language related to searching and selecting movies. For example, "I'd like to see a recent R rated drama" returns the names of all R-rated dramas that have been released in the last 30 days.
+This app provides a conversational interface that let's users search for movies based on a set of criteria. The dialog system is built to understand natural language related to searching and selecting movies. For example, "I'd like to see a recent R rated drama" returns the names of all R-rated dramas that have been released in the last 30 days.
 
 This dialog system also understands variations of text, which allows users to phrase their responses in many different ways. For example, the system might ask, "Do you want to watch an upcoming movie or one that's playing tonight?" The user can reply with "tonight" or "Show me movies playing currently," and the system understands that the user wants to know about current movies.
 
