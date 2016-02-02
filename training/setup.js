@@ -16,8 +16,17 @@
 
 'use strict';
 
-var watson = require('watson-developer-cloud');
-var fs = require('fs');
+var watson = require('watson-developer-cloud'),
+  extend = require('util')._extend,
+  fs     = require('fs');
+
+console.log('Training...');
+
+// load the environment variables
+if (fs.existsSync('../.env.js')){
+  console.log('Loading environment variables from .env.js');
+  extend(process.env,require('../.env.js'));
+}
 
 var dialogFile = __dirname + '/dialog_id';
 var classifierFile = __dirname + '/classifier_id';
@@ -38,8 +47,6 @@ var classifierService = watson.natural_language_classifier({
   password: 'PASSWORD',
   version: 'v1'
 });
-
-console.log('Training...');
 
 if (!fs.existsSync(dialogFile) || fs.readFileSync(dialogFile, 'utf8') === '') {
   dialogService.createDialog({
