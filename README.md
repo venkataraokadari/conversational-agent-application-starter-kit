@@ -9,11 +9,37 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 **Notes:** The application will mock data when suggesting movies until you provide an API Key to [themoviedb.com](), see the step 7 In the Getting Started section. The application will automatically train a classifier which takes about 20 minutes so initially you will be only using the Dialog service.
 
 ## Table of Contents
+  - [How this app works](#how-this-app-works)
+  - [Getting Started](#getting-started)
+  - [Running the application locally](#running-the-application-locally)
+  - [Application Starter Kit](#application-starter-kit)
+  - [Conversational Agent](#conversational-agent)
+    - [When to use this pattern](#when-to-use-this-pattern)
+    - [Best practices](#best-practices)
+    - [Reference information](#reference-information)
+        - [Dialog](#dialog)
+        - [Natural Language Classifier](#natural-language-classifier)
+  - [Troubleshooting](#troubleshooting)
+
  - [Getting started](#getting-started)
  - [Running the application locally](#running-the-application-locally)
  - [application-starter-kit](#application-starter-kit)
  - [Conversational Agent](#pattern-conversational-agent)
  - [Troubleshooting](#troubleshooting)
+
+
+### How this app works
+
+Users talk in natural language to the system to find movies that match the search criteria they've specified. The system is built to understand natural language that relates to searching for and selecting movies to watch. For example, saying "I'd like to see a recent R rated drama" causes the system to search the movie repository and to return the names of all R-rated dramas that have been released in the last 30 days.
+
+The system is designed to obtain the following types of information about movies from users before it searches the repository:
+
+* Recency: The system determines whether users want to know about currently playing movies or upcoming movies.
+* Genre: The system understands movie genres, such as action, comedy, and horror.
+* Rating: The system understands movie rating, such as G, PG-13, and R.
+
+Users can search across all genres and ratings simply by answering "no" to the corresponding questions. Before the system searches the movie repository, it needs to know whether a user prefers current movies or upcoming movies. The system understands variations of text, so users can rephrase their responses, and the system will still process it. For example, the system might ask, "Do you want to watch an upcoming movie or one that's playing tonight?" Users can say "tonight" or "Show me movies playing currently," and the system understands that both answers mean that users want to know about current movies.
+
 
 ## Getting Started
 If you fork the project and want to push your fork follow the next steps.
@@ -154,7 +180,6 @@ This sample application highlights one of the industry patterns called [Conversa
 
 ## Conversational Agent
 
-
 Make sure you read the [Reference Information](#reference-information) to understand the services involve in this pattern.
 
 This image below shows a flow diagram for a Conversation Agent using the Natural Language Classifier and Dialog services.
@@ -162,11 +187,20 @@ This image below shows a flow diagram for a Conversation Agent using the Natural
   <img src="docs/demo_architecture.png"/>
 </p>
 
- A. Capture user input  
- B. Classify this input into one of existing intents like: search for a movie, lookup actors, small talk, etc.  
- C. Use the dialog flow to ask users for any additional information required to complete the task  
- D. Execute the task using the information collected during the conversation
+### Using the Dialog service and the Natural Language Classifier service
 
+The dialog service uses expert rules to match the user utterance to an intent thus typically yielding high accuracy. The classifier service on the other hand is a statistical system which gives a high recall. So the combination of dialog and classifier, gives a high precision, high accuracy system.
+
+The Dialog service only uses the classifier intent when control goes to the default response in the dialog. For a given input sentence, the trained classifier responds with a list of intent classes and confidence scores for each class. Dialog only uses the top two classes to decide how to respond to the user. The following checks are performed by the Dialog service:
+
+ * The USER_INTENT from the Classifier service is considered valid when class(0).confidence >= upper_confidence_threshold.
+ * Ask user to confirm the USER_INTENT when upper_confidence_threshold >= class(0).confidence > lower_confidence_threshold.
+ * Ask user to disambiguate between USER_INTENT(0) and USER_INTENT(1) when class(0).confidence + class(1).confidence > upper_confidence_threshold.
+ * Reply with the default response when none of the previous checks are true.
+
+Where, class(0) is the top class and class(0).confidence is the respective confidence score. Similarly, class(1) is the second best class and class(1).confidence is the respective confidence score. In these checks, upper_confidence_threshold and lower_confidence_threshold are floats 0 - 1, and their values are obtained by running cross-validation tests with the classifier on a given data set.
+
+---
 
 When creating a conversational agent we first need to understand what the user is trying to do. Is he trying to lookup actors? search for upcoming movies? have an small talk with Watson?. We call that the user is trying to perform *Intent*.  To accomplish this, we'll train the Watson Natural Language Classifier service using various text examples of users making the requests. The servie uses deep machine learning techniques to return the top predicted classes.
 
@@ -197,13 +231,14 @@ Next, we need any related information required to complete the user's request. T
  * **TODO:**
 
 ### Reference information
-Here are some links with more inforamtion about the services and links to other Application Starter Kits.
+Here are some links with more information about the services and links to other Application Starter Kits.
 
 ##### Dialog
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/): Get an in-depth knowledge of the Dialog service
 * [API Explorer](https://watson-api-explorer.mybluemix.net/apis/dialog-v1): Try out the API
 * [Creating your own dialog](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/tutorial_advanced.shtml): Design your own dialog by using a tutorial
+* [Natural conversation tutorial](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/ega_docs/dialog_ega.shtml#naturalconvo_design): Advance tutorial on how to create a conversion like the one in this sample application
 
 ##### Natural Language Classifier
 
