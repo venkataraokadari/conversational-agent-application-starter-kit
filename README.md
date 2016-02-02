@@ -1,19 +1,21 @@
 # Movie Assistant
 
-  This is an small version of [What's in Theaters](https://github.com/watson-developer-cloud/movieapp-dialog) created to highlight how to combine [Dialog][dialog] and [Natural Language Classifier][classifier] services to create a [Conversational Agent]() pattern.
+  This is an small version of [What's in Theaters](https://github.com/watson-developer-cloud/movieapp-dialog) created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] services to create a [Conversational Agent](#pattern-conversational-agent).
 
 
-Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
-
+Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.  
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Note:** The application will mock data when suggesting movies until you provide an API Key to [themoviedb.com]()
+**Notes:** The application will mock data when suggesting movies until you provide an API Key to [themoviedb.com](), see the step 7 In the Getting Started section. The application will automatically train a classifier which takes about 20 minutes so initially you will be only using the Dialog service.
 
-## Conversational Agent Pattern
+## Table of Contents
+ - [Getting started](#getting-started)
+ - [Running the application locally](#running-the-application-locally)
+ - [application-starter-kit](#application-starter-kit)
+ - [Conversational Agent](#pattern-conversational-agent)
+ - [Troubleshooting](#troubleshooting)
 
-Describe how to combine both services and show some examples from this project.
-
-## Getting started
+## Getting Started
 If you fork the project and want to push your fork follow the next steps.
 
   1. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use.
@@ -54,7 +56,7 @@ If you fork the project and want to push your fork follow the next steps.
 
   7. Sign up in [themoviedb.com](), get an API key and add it to the app by editing the `api/servies.js` file line 29.
     File `api/servies.js`:
-    
+
     ```js
     var TMDB_API_KEY = process.env.TMDB_API_KEY || '';
   	```
@@ -73,8 +75,8 @@ You can retrieve those ids at [`<application-name>.mybluemix.net/api/services`](
 
 ```json
 {
-  dialog_id: "24045716-d5cc-4748-afed-a4ea0287b737",
-  classifier_id: "563C46x19-nlc-3140"
+  "dialog_id": "24045716-d5cc-4748-afed-a4ea0287b737",
+  "classifier_id": "563C46x19-nlc-3140"
 }
 ```
 
@@ -82,7 +84,7 @@ You can retrieve those ids at [`<application-name>.mybluemix.net/api/services`](
   The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/), so you must download and install them as part of the following steps.
 
   1. Create a `.env.js` file in the root directory of your project with the next content:
- 
+
   ```js
   module.exports = {
   TMDB_API_KEY: 'TMDB API KEY HERE',
@@ -132,17 +134,83 @@ You can retrieve those ids at [`<application-name>.mybluemix.net/api/services`](
   2. Install [Node.js](http://nodejs.org/).
   3. Clone the repository into a local folder.
   3. Go to the project folder in a terminal and run:
-        
+
     ```sh
     $ npm install
     ```
-		
-  4. Start the application by running: 
+
+  4. Start the application by running:
 
     ```sh
     $ gulp
     ```
   5. Open [http://localhost:5000]() to see the running application.
+
+
+## Application Starter Kit
+An Application Starter Kit(ASK) is a multi-service Watson sample app built to show common industry 'patterns' and best practices around them.
+
+This sample application highlights one of the industry patterns called [Conversational Agent](#pattern-conversational-agent).
+
+## Conversational Agent
+
+
+Make sure you read the [Reference Information](#reference-information) to understand the services involve in this pattern.
+
+This image below shows a flow diagram for a Conversation Agent using the Natural Language Classifier and Dialog services.
+<p align="center">
+  <img src="docs/demo_architecture.png"/>
+</p>
+
+ A. Capture user input  
+ B. Classify this input into one of existing intents like: search for a movie, lookup actors, small talk, etc.  
+ C. Use the dialog flow to ask users for any additional information required to complete the task  
+ D. Execute the task using the information collected during the conversation
+
+
+When creating a conversational agent we first need to understand what the user is trying to do. Is he trying to lookup actors? search for upcoming movies? have an small talk with Watson?. We call that the user is trying to perform *Intent*.  To accomplish this, we'll train the Watson Natural Language Classifier service using various text examples of users making the requests. The servie uses deep machine learning techniques to return the top predicted classes.
+
+Here is an example of what we will use to train the classifier:
+
+    Who directed The Hobbit, LookupDirectors
+    Who starred in The Hobbit, LookupActors
+    Drama, SearchMovies
+    I'd like to see a recent drama, SearchMovies
+    Show me whats playing, SearchMovies
+    Something sexy, SearchMovies
+    Good day, ClosingTalk
+    Hi, OpeningTalk
+    Who is the producer of Vacation?,LookupDirectors
+    Help,RepairTalk
+    Robert,GiveName
+    I want to look up movie stars,LookupActors
+
+Next, we need any related information required to complete the user's request. To do this, we'll rely on the Dialog service which supports building conversations between a user and an application. The Dialog service will track and store information obtained during the conversation until we have all the info required to complete the task like search for a movie, arctor or director.
+
+### When to use this pattern
+ * You need to perform a task that requires user input and you want to mimic a conversation
+ * You want to provide a conversation experience like Siri or Cortana.
+
+### Best practices
+ * Write around 10 classes/intent with 15 examples for each. That will provide to the Natural Language Classifier information to build the deep machine learning model that will be used to classify the user input.
+ * Define different opening sentences in the dialog flow (.xml file). That will help you to avoid repetitive conversations where you dialog always ask the same questions.
+ * **TODO:**
+
+### Reference information
+Here are some links with more inforamtion about the services and links to other Application Starter Kits.
+
+##### Dialog
+
+* [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/): Get an in-depth knowledge of the Dialog service
+* [API Explorer](https://watson-api-explorer.mybluemix.net/apis/dialog-v1): Try out the API
+* [Creating your own dialog](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/tutorial_advanced.shtml): Design your own dialog by using a tutorial
+
+##### Natural Language Classifier
+
+* [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/): Get an in-depth knowledge of the Natural Language Classifier service
+* [API Explorer](https://watson-api-explorer.mybluemix.net/apis/natural-language-classifier-v1): Try out the API.
+* [Understanding how Dialog uses the output from the Natural Language Classier](http://heidloff.net/article/cognitive-question-answer-systems-bluemix-watson)
+
 
 ## Troubleshooting
 
