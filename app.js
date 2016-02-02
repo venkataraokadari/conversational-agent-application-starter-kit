@@ -40,6 +40,8 @@ var getIntent = Q.nfbind(apis.classifier.classify.bind(apis.classifier));
 var searchMovies = Q.nfbind(apis.movieDB.searchMovies.bind(apis.movieDB));
 var getMovieInformation = Q.nfbind(apis.movieDB.getMovieInformation.bind(apis.movieDB));
 
+var log = console.log.bind(null,'  ');
+
 // create the conversation
 app.post('/api/create_conversation', function(req, res, next) {
   converse(req.body)
@@ -51,10 +53,10 @@ app.post('/api/create_conversation', function(req, res, next) {
 
 // converse
 app.post('/api/conversation', function(req, res, next) {
-  console.log('1. classifying user intent');
+  log('1. classifying user intent');
   getIntent({ text: req.body.input })
   .then(function(result) {
-    console.log('2. updating the dialog profile with the user intent');
+    log('2. updating the dialog profile with the user intent');
     var classes = result[0].classes;
     var profile = {
       client_id: req.body.client_id,
@@ -68,21 +70,21 @@ app.post('/api/conversation', function(req, res, next) {
     return updateProfile(profile);
   })
   .catch(function(error ){
-    console.log(error.description || error);
+    log('2.', error.description || error);
   })
   .then(function() {
-    console.log('3. calling dialog.conversation()');
+    log('3. calling dialog.conversation()');
     return converse(req.body)
     .then(function(result) {
       var conversation = result[0];
       if (searchNow(conversation.response.join(' '))) {
-        console.log('4. dialog thing we have information enough to search for movies');
+        log('4. dialog thing we have information enough to search for movies');
         var searchParameters = parseSearchParameters(conversation);
         conversation.response = conversation.response.slice(0, 1);
-        console.log('5. searching for movies in themoviedb.com');
+        log('5. searching for movies in themoviedb.com');
         return searchMovies(searchParameters)
         .then(function(searchResult) {
-          console.log('6. updating the dialog profile with the result from themoviedb.com');
+          log('6. updating the dialog profile with the result from themoviedb.com');
           var profile = {
             client_id: req.body.client_id,
             name_values: [
@@ -93,7 +95,7 @@ app.post('/api/conversation', function(req, res, next) {
           };
           return updateProfile(profile)
           .then(function() {
-            console.log('7. calling dialog.conversation()');
+            log('7. calling dialog.conversation()');
             var params = extend({}, req.body);
             if (['new','repeat'].indexOf(searchParameters.page) !== -1)
               params.input = PROMPT_MOVIES_RETURNED;
@@ -107,7 +109,7 @@ app.post('/api/conversation', function(req, res, next) {
           });
         });
       } else {
-        console.log('4. not enough information to search for movies, continue the conversation');
+        log('4. not enough information to search for movies, continue the conversation');
         res.json(conversation);
       }
     });
