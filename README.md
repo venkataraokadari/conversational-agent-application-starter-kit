@@ -1,19 +1,18 @@
 # Movie Assistant
 
-  This is a streamlined version of [What's in Theaters](https://github.com/watson-developer-cloud/movieapp-dialog), created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] services as a [Conversational Agent](#pattern-conversational-agent).
+  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Pattern](#conversational-pattern).
 
-
-Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.  
+Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, and to deploy your own copy of this application on Bluemix.
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Notes:** The application uses mock data for movie suggestions until the user provides an API Key to [themoviedb.com](). See step 7 in the Getting Started section. When the application is first run, it will automatically train a classifier for NLC (Natural Language Classifier). This process takes about 20 minutes. While the classifer is being trained, the user can only interact with the Dialog service.
+**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 7 in the Getting Started section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifer is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
   - [Getting Started](#getting-started)
   - [Running the application locally](#running-the-application-locally)
   - [Application Starter Kit](#application-starter-kit)
-  - [Conversational Agent](#conversational-agent)
+  - [Conversational Pattern](#conversational-pattern)
     - [When to use this pattern](#when-to-use-this-pattern)
     - [Best practices](#best-practices)
     - [Reference information](#reference-information)
@@ -21,16 +20,9 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
         - [Natural Language Classifier](#natural-language-classifier)
   - [Troubleshooting](#troubleshooting)
 
- - [Getting started](#getting-started)
- - [Running the application locally](#running-the-application-locally)
- - [application-starter-kit](#application-starter-kit)
- - [Conversational Agent](#pattern-conversational-agent)
- - [Troubleshooting](#troubleshooting)
-
-
 ### How this app works
 
-This app provides a conversational interface that let's users search for movies based on a set of criteria. The dialog system is built to understand natural language related to searching and selecting movies. For example, "I'd like to see a recent R rated drama" returns the names of all R-rated dramas that have been released in the last 30 days.
+This app provides a conversational interface that lets users search for movies based on a set of criteria. The dialog system is built to understand natural language related to searching and selecting movies. For example, "I'd like to see a recent R rated drama" returns the names of all R-rated dramas that have been released in the last 30 days.
 
 This dialog system also understands variations of text, which allows users to phrase their responses in many different ways. For example, the system might ask, "Do you want to watch an upcoming movie or one that's playing tonight?" The user can reply with "tonight" or "Show me movies playing currently," and the system understands that the user wants to know about current movies.
 
@@ -40,7 +32,7 @@ The conversation is designed to obtain three pieces of information before search
 * Genre: The system understands movie genres, such as action, comedy, and horror.
 * Rating: The system understands movie ratings, such as G, PG-13, and R.
 
-Users can search across all genres and ratings by answering "no" to the corresponding questions. 
+Users can search across all genres and ratings by answering "no" to the corresponding questions.
 
 ## Getting Started
 If you've forked the project and want to push your fork, follow these steps.
@@ -81,22 +73,22 @@ If you've forked the project and want to push your fork, follow these steps.
     $ cf create-service natural_language_classifier standard classifier-service
     ```
 
-  7. Sign up at [themoviedb.com]() to get an API key. Add the API key to the app by editing the `api/servies.js` file line 29 to:
+  7. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key]. Add the API key to the app by editing the `api/servies.js` file line 29 to:
     File `api/servies.js`:
 
     ```js
     var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your API Key>;
   	```
-  8. Push it live by running the following command:
+  8. Push the updated application live by running the following command:
 
     ```sh
     $ cf push
     ```
 
-When running for the first time, the application creates:
+The first time it runs, the application creates:
 
-  * A dialog flow using: `training/dialog_and_classifier.xml` and writes the dialog id in the file `/training/dialog_id`
-  * A classifier using: `training/classifier_training.csv` and writes classifier id in the file `/training/classifier_id`
+  * A dialog flow using: `training/dialog_and_classifier.xml` and writes the dialog id to the file `/training/dialog_id`
+  * A classifier using: `training/classifier_training.csv` and writes classifier id to the file `/training/classifier_id`
 
 You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](). The response will be similar to:
 
@@ -175,15 +167,15 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
 
 
 ## Application Starter Kit
-An Application Starter Kit(ASK) is a multi-service sample app built to demonstrate common industry 'patterns' and best practices around Watson services.
+An Application Starter Kit (ASK) is a multi-service sample app built to demonstrate common industry 'patterns' and best practices around Watson services.
 
-This sample application highlights one of the industry patterns called [Conversational Agent](#pattern-conversational-agent).
+This sample application highlights one of the industry patterns called a [Conversational Pattern](#conversational-pattern).
 
-## Conversational Agent
+## Conversational Pattern
 
 First, make sure you read the [Reference Information](#reference-information) to understand the services involved in this pattern.
 
-The image below shows a flow diagram for a Conversation Agent using the Natural Language Classifier and the Dialog service.
+The image below shows a flow diagram for a Conversation Pattern using the Natural Language Classifier and the Dialog service.
 <p align="center">
   <img src="docs/demo_architecture.png"/>
 </p>
@@ -224,7 +216,7 @@ Next, we need to acquire any additional information required to complete the use
 
 ### When to use this pattern
  * You need to perform a task that requires user input and you want to mimic a conversation
- * You want to provide a conversation experience like Siri or Cortana.
+ * You want to provide a conversation experience like Siri or Cortana
 
 ### Some best practices
  * When using the Natural Language Classifier, there should be approximately 10 classes.  Each class should have 15 examples of possible user inputs. This provides the service with enough information to build the deep machine learning model that will classify future user inputs.
@@ -244,15 +236,14 @@ Here are some links with more information about the services and links to other 
 ##### Natural Language Classifier
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/): Get an in-depth knowledge of the Natural Language Classifier service
-* [API Explorer](https://watson-api-explorer.mybluemix.net/apis/natural-language-classifier-v1): Try out the API.
+* [API Explorer](https://watson-api-explorer.mybluemix.net/apis/natural-language-classifier-v1): Try out the API
 * [Creating your own classifier](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/get_start.shtml): How to use the API to create and use your own classifier
-
-* [Understanding how Dialog uses the output from the Natural Language Classier](http://heidloff.net/article/cognitive-question-answer-systems-bluemix-watson)
+* [Understanding how Dialog uses the output from the Natural Language Classifier](http://heidloff.net/article/cognitive-question-answer-systems-bluemix-watson)
 
 
 ## Troubleshooting
 
-To troubleshoot your Bluemix app the main useful source of information are the logs, to see them, run:
+When troubleshooting your Bluemix app, the most useful source of information is the execution logs. To see them, run:
 
   ```sh
   $ cf logs <application-name> --recent
@@ -274,3 +265,6 @@ To troubleshoot your Bluemix app the main useful source of information are the l
 [sign_up]:https://console.ng.bluemix.net/registration/
 [dialog]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/dialog.html
 [classifier]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/nl-classifier.html
+[the_movie_db]: https://www.themoviedb.org/account/signup
+[the_movie_db_api_key]: https://www.themoviedb.org/documentation/api
+
