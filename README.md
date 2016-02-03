@@ -158,7 +158,7 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
     }
     ```
 
-  5. If necessary, install [Node.js](http://nodejs.org/) on your system. Installing Node.js will also install the `npm` command.
+  5. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
 
 
   6. Install any dependencies that the application requires:
