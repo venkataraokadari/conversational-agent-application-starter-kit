@@ -1,6 +1,6 @@
 # Movie Assistant
 
-  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Pattern](#conversational-pattern). This application is an [Application Starter Kit]() that is designed to quickly get you up and running with a common industry pattern, and which can serve as the basis for your own applications that follow that pattern.
+  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). This application is an [Application Starter Kit]() that is designed to quickly get you up and running with a common industry pattern, and which can serve as the basis for your own applications that follow that pattern.
 
 Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, and to deploy your own copy of this application on Bluemix:
 
@@ -13,7 +13,7 @@ Give it a try! Click the button below to fork the repository that contains the s
   - [Getting Started](#getting-started)
   - [Running the application locally](#running-the-application-locally)
   - [Application Starter Kit](#application-starter-kit)
-  - [Conversational Pattern](#conversational-pattern)
+  - [Conversational Agent](#conversational-agent)
     - [When to use this pattern](#when-to-use-this-pattern)
     - [Best practices](#best-practices)
     - [Reference information](#reference-information)
@@ -178,13 +178,13 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
 ## Application Starter Kit
 An Application Starter Kit (ASK) is a multi-service sample application that is designed to demonstrate common industry `patterns` and best practices around Watson services.
 
-This sample application highlights one of those industry patterns, known as a [Conversational Pattern](#conversational-pattern).
+This sample application highlights one of those industry patterns, known as a [Conversational Agent](#conversational-agent).
 
-## Conversational Pattern
+## Conversational Agent
 
 First, make sure you read the [Reference Information](#reference-information) to understand the services that are involved in this pattern. This reference information will explain common terminology for these services such as `classifier`, `confidence scores`, `intents`, `training`, and so on.
 
-The following image shows a flow diagram for a Conversational Pattern using the Natural Language Classifier and the Dialog service:
+The following image shows a flow diagram for a Conversational Agent using the Natural Language Classifier and the Dialog service:
 <p align="center">
   <img src="docs/demo_architecture.png"/>
 </p>
