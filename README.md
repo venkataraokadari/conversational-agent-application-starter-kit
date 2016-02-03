@@ -1,12 +1,12 @@
 # Movie Assistant
 
-  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). This application is an [Application Starter Kit]() that is designed to quickly get you up and running with a common industry pattern, and which can serve as the basis for your own applications that follow that pattern.
+  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). This application is an [Application Starter Kit](#application-starter-kit) that is designed to quickly get you up and running with a common industry pattern, and which can serve as the basis for your own applications that follow that pattern.
 
 Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, and to deploy your own copy of this application on Bluemix:
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 8 in the [Getting Started]() section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
+**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 8 in the [Getting Started](#getting-started) section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
@@ -36,7 +36,7 @@ The conversation is designed to obtain three pieces of information before search
 Users can search across all genres and ratings by answering "no" to the corresponding questions.
 
 ## Getting Started
-If you've [forked the project](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and want to push that fork to Bluemix, do the following steps. If you want to run the application locally using a clone of the project, see the next section, [Running the application locally]():
+If you've [forked the project](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and want to push that fork to Bluemix, do the following steps. If you want to run the application locally using a clone of the project, see the next section, [Running the application locally](#running-the-application-locally):
 
   1. Clone your fork of the project repository to your local system.
 
@@ -93,7 +93,7 @@ The first time it runs, the application creates:
   * A dialog flow using: `training/dialog_and_classifier.xml` and writes the dialog id to the file `/training/dialog_id`
   * A classifier using: `training/classifier_training.csv` and writes classifier id to the file `/training/classifier_id`
 
-You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](). The response will be similar to:
+You can retrieve these ids at `<application-name>.mybluemix.net/api/services`, where `<application-name>` is the name that you gave your application in step 4 of the previous list. The response will be similar to:
 
 ```json
 {
@@ -107,7 +107,7 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
 
   1. Clone the [Movie Assistant repository](https://github.com/germanattanasio/movie-assistant) into a local folder, and go to that folder.
 
-  2. If you did not work through the steps in the [Getting Started]() section, follow steps 2 through 8 in that section, editing the `manifest.yml` file in your local clone of the repository instead of in a fork of the repository.
+  2. If you did not work through the steps in the [Getting Started](#getting-started) section, follow steps 2 through 8 in that section, editing the `manifest.yml` file in your local clone of the repository instead of in a fork of the repository.
 
   3. Create a `.env.js` file in the root directory of the project with the following content:
 
@@ -172,7 +172,7 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
     ```sh
     $ gulp
     ```
-  8. Open [http://localhost:5000]() to see the running application.
+  8. Open [http://localhost:5000](http://localhost:5000) to see the running application.
 
 
 ## Application Starter Kit
