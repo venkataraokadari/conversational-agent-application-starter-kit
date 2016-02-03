@@ -6,7 +6,7 @@ Give it a try! Click the button below to fork the repository that contains the s
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 7 in the [Getting Started]() section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
+**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 8 in the [Getting Started]() section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
