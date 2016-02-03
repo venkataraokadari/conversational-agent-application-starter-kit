@@ -1,11 +1,12 @@
 # Movie Assistant
 
-  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Pattern](#conversational-pattern).
+  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Pattern](#conversational-pattern). This application is an [Application Starter Kit]() that is designed to quickly get you up and running with a common industry pattern, and which can serve as the basis for your own applications that follow that pattern.
 
-Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, and to deploy your own copy of this application on Bluemix.
+Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, and to deploy your own copy of this application on Bluemix:
+
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 7 in the Getting Started section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifer is being trained, the user can only interact with the Dialog service.
+**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 7 in the [Getting Started]() section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
@@ -28,20 +29,22 @@ This dialog system also understands variations of text, which allows users to ph
 
 The conversation is designed to obtain three pieces of information before searching the movie repository:
 
-* Recency: The system determines whether users want to know about currently playing movies or upcoming movies.
-* Genre: The system understands movie genres, such as action, comedy, and horror.
-* Rating: The system understands movie ratings, such as G, PG-13, and R.
+* Recency: The system determines whether users want to know about currently playing movies or upcoming movies
+* Genre: The system understands movie genres, such as action, comedy, and horror
+* Rating: The system understands movie ratings, such as G, PG-13, and R
 
 Users can search across all genres and ratings by answering "no" to the corresponding questions.
 
 ## Getting Started
-If you've forked the project and want to push your fork, follow these steps.
+If you've [forked the project](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and want to push that fork to Bluemix, do the following steps. If you want to run the application locally using a clone of the project, see the next section, [Running the application locally]():
 
-  1. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use.
+  1. Clone your fork of the project repository to your local system.
 
-  2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool.
+  2. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use, as are GA services in the standard plan below a certain usage threshold.
 
-  3. Edit the `manifest.yml` file and replace `<application-name>` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `<application-name>.mybluemix.net`.
+  3. Download and install the [Cloud-foundry CLI][cloud_foundry] tool.
+
+  4. Edit the `manifest.yml` file in your fork and replace `<application-name>` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `<application-name>.mybluemix.net`.
 
     ```yml
     applications:
@@ -54,32 +57,32 @@ If you've forked the project and want to push your fork, follow these steps.
       memory: 256M
     ```
 
-  4. Connect to Bluemix by running the following commands in the command-line tool:
+  5. Connect to Bluemix by running the following commands in a terminal window:
 
     ```sh
     $ cf api https://api.ng.bluemix.net
     $ cf login -u <your-Bluemix-ID>
     ```
 
-  5. Create the Dialog service in Bluemix by running the following command:
+  6. Create an instance of the Dialog service in Bluemix by running the following command:
 
     ```sh
     $ cf create-service dialog standard dialog-service
     ```
 
-  6. Create the Natural Language Classifier service:
+  7. Create the Natural Language Classifier service:
 
     ```sh
     $ cf create-service natural_language_classifier standard classifier-service
     ```
 
-  7. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key]. Add the API key to the app by editing the `api/servies.js` file line 29 to:
+  8. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key]. Add the API key to the app by editing the `api/servies.js` file line 29 to:
     File `api/servies.js`:
 
     ```js
     var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your API Key>;
   	```
-  8. Push the updated application live by running the following command:
+  9. Push the updated application live by running the following command:
 
     ```sh
     $ cf push
@@ -100,9 +103,13 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
 ```
 
 ## Running the application locally
-  The application built on [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  The you should download and install them as part of the following steps.
+  The application is built on [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  Instructions for downloading and installing these are included in the following procedure:
 
-  1. Create a `.env.js` file in the root directory of your project with the following content:
+  1. Clone the [Movie Assistant repository](https://github.com/germanattanasio/movie-assistant) into a local folder, and go to that folder.
+
+  2. If you did not work through the steps in the [Getting Started]() section, follow steps 2 through 8 in that section, editing the `manifest.yml` file in your local clone of the repository instead of in a fork of the repository.
+
+  3. Create a `.env.js` file in the root directory of the project with the following content:
 
   ```js
   module.exports = {
@@ -125,7 +132,8 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
   })
   };
   ```
-  2. Copy the `username`, `password`, and `url` credentials from your `dialog-service` and `classifier-service` services in Bluemix to the previous file. To see the service credentials, run the following command, where `<application-name>` is the unique name you've specified:
+
+  4. Copy the `username`, `password`, and `url` credentials from your `dialog-service` and `classifier-service` services in Bluemix to the previous file. To see the service credentials for each of your service instances, run the following command, replacing `<application-name>` with the name of the application that you specified in your `manifest.yml` file:
 
     ```sh
     $ cf env <application-name>
@@ -150,52 +158,53 @@ You can retrieve these ids at [`<application-name>.mybluemix.net/api/services`](
     }
     ```
 
-  2. Install [Node.js](http://nodejs.org/).
-  3. Clone the repository into a local folder.
-  3. Go to the project folder in a terminal and run:
+  5. If necessary, install [Node.js](http://nodejs.org/) on your system. Installing Node.js will also install the `npm` command.
+
+
+  6. Install any dependencies that the application requires:
 
     ```sh
     $ npm install
     ```
 
-  4. Start the application by running:
+  7. Start the application by running:
 
     ```sh
     $ gulp
     ```
-  5. Open [http://localhost:5000]() to see the running application.
+  8. Open [http://localhost:5000]() to see the running application.
 
 
 ## Application Starter Kit
-An Application Starter Kit (ASK) is a multi-service sample app built to demonstrate common industry 'patterns' and best practices around Watson services.
+An Application Starter Kit (ASK) is a multi-service sample application that is designed to demonstrate common industry `patterns` and best practices around Watson services.
 
-This sample application highlights one of the industry patterns called a [Conversational Pattern](#conversational-pattern).
+This sample application highlights one of those industry patterns, known as a [Conversational Pattern](#conversational-pattern).
 
 ## Conversational Pattern
 
-First, make sure you read the [Reference Information](#reference-information) to understand the services involved in this pattern.
+First, make sure you read the [Reference Information](#reference-information) to understand the services that are involved in this pattern. This reference information will explain common terminology for these services such as `classifier`, `confidence scores`, `intents`, `training`, and so on.
 
-The image below shows a flow diagram for a Conversation Pattern using the Natural Language Classifier and the Dialog service.
+The following image shows a flow diagram for a Conversational Pattern using the Natural Language Classifier and the Dialog service:
 <p align="center">
   <img src="docs/demo_architecture.png"/>
 </p>
 
 ### Using the Dialog service and the Natural Language Classifier service
 
-Since the dialog service uses expert rules to match user inputs to intents, the service typically has high accuracy. The classifier service on the other hand is a statistical system that yields high recall.  Thus, the combination of dialog and natural language classifier creates a high precision, high accuracy system.
+Since the Dialog service uses expert rules to match user inputs to intents, the service typically has high accuracy. The Natural Language Classifier service is a statistical system that yields high recall.  The combination of the Dialog and Natural Language Classifier services therefore creates a high precision, high accuracy system.
 
-For a given input, the trained natural language classifier responds with a list of intent classes and the corresponding confidence scores. Dialog only uses the top two classes to decide how to proceed with the conversation. The following checks are performed by the Dialog service:
+For a given input, a trained Natural Language Classifier responds with a list of intent classes and the corresponding confidence scores. Dialog only uses the top two classes to decide how to proceed with the conversation. The following checks are performed by the Dialog service:
 
  * The USER_INTENT from the Classifier service is considered valid when class(0).confidence >= upper_confidence_threshold.
  * Ask user to confirm the USER_INTENT when upper_confidence_threshold >= class(0).confidence > lower_confidence_threshold.
  * Ask user to disambiguate between USER_INTENT(0) and USER_INTENT(1) when class(0).confidence + class(1).confidence > upper_confidence_threshold.
  * Reply with the default response when none of the previous checks are true.
 
-Here, class(0) is the top class and class(0).confidence is its confidence score. Similarly, class(1) is the second best class with class(1).confidence being its confidence score. In these checks, upper_confidence_threshold and lower_confidence_threshold are floats 0 - 1, and their values are obtained by running cross-validation tests with the classifier on a given data set.
+In this case, class(0) is the top class and class(0).confidence is its confidence score. Similarly, class(1) is the second best class with class(1).confidence being its confidence score. In these checks, upper_confidence_threshold and lower_confidence_threshold are floats 0 - 1, and their values are obtained by running cross-validation tests with the classifier on a given data set.
 
 ---
 
-When creating a conversational agent, you should first understand what the user is trying to do. Is he looking up an actor? Is she searching for upcoming movies? Is he simplying looking to have small talk with Watson? We call these the user's *Intent*. To extract the user intent from the user input, we train the Watson Natural Language Classifier using various examples of possible user requests. The servie then uses deep machine learning techniques to return the top predicted classes.
+When creating an application based on the conversational pattern, you should first understand what the user is trying to do. Is he looking up an actor? Is she searching for upcoming movies? Is she simply looking to have small talk with Watson? We call these the user's *Intent*. To extract the user intent from the user input, we train the Watson Natural Language Classifier using various examples of possible user requests. The service then uses deep machine learning techniques to return the top predicted classes.
 
 Here is an example of what we will use to train the classifier:
 
@@ -212,7 +221,7 @@ Here is an example of what we will use to train the classifier:
     Robert,GiveName
     I want to look up movie stars,LookupActors
 
-Next, we need to acquire any additional information required to complete the user's request. To do this, we rely on the Dialog service. The Dialog service will track and store information obtained during the conversation until we have all the information required to complete the task.  In the case of our application, it's searching for a movie, an arctor or a director.
+Next, we need to acquire any additional information that is required to complete the user's request. To do this, we rely on the Dialog service. The Dialog service tracks and stores information obtained during the conversation until we have all the information required to complete the task.  In the case of this application, it's searching for a movie, an actor, or a director.
 
 ### When to use this pattern
  * You need to perform a task that requires user input and you want to mimic a conversation
@@ -224,7 +233,7 @@ Next, we need to acquire any additional information required to complete the use
  * **TODO:**
 
 ### Reference information
-Here are some links with more information about the services and links to other Application Starter Kits.
+The following links provide more information about the Dialog and Natural Language Classifier services, including tutorials on using those services:
 
 ##### Dialog
 
@@ -250,11 +259,11 @@ When troubleshooting your Bluemix app, the most useful source of information is 
   ```
 
 ## Open Source @ IBM
-  Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
+  Find more open source projects on the [IBM GitHub Page](http://ibm.github.io/)
 
 ### License
 
-  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
+  This sample code is licensed under the Apache 2.0 license. Full license text is available in [LICENSE](LICENSE).
 
 ### Contributing
 
@@ -267,4 +276,3 @@ When troubleshooting your Bluemix app, the most useful source of information is 
 [classifier]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/nl-classifier.html
 [the_movie_db]: https://www.themoviedb.org/account/signup
 [the_movie_db_api_key]: https://www.themoviedb.org/documentation/api
-
