@@ -239,7 +239,7 @@ The following links provide more information about the Dialog and Natural Langua
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/): Get an in-depth knowledge of the Dialog service
 * [API Explorer](https://watson-api-explorer.mybluemix.net/apis/dialog-v1): Try out the API
-* [Creating your own dialog](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/tutorial_advanced.shtml): Design your own dialog by using a tutorial
+* [Creating your own dialog](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/tutorial_advanced.shtml): Design your own dialog by working through a tutorial
 * [Natural conversation tutorial](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/ega_docs/dialog_ega.shtml#naturalconvo_design): Advance tutorial on how to create a conversion like the one in this sample application
 
 ##### Natural Language Classifier
