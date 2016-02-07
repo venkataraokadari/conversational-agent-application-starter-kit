@@ -23,9 +23,9 @@ var watson  = require('watson-developer-cloud'),
 var dialogFile = __dirname + '/../training/dialog_id';
 var classifierFile = __dirname + '/../training/classifier_id';
 
-// This application requires 3 ids to work propertly
+// This application requires 3 ids to work properly
 
-// 1. TMDB API key that can be obtained in https://www.themoviedb.org/documentation/api
+// 1. TMDB API key, explained in https://www.themoviedb.org/documentation/api
 var TMDB_API_KEY = process.env.TMDB_API_KEY || '';
 
 // 2. dialog id - see training/setup.js
@@ -47,7 +47,7 @@ module.exports = {
     path: { dialog_id: DIALOG_ID }
   }),
 
-  // if the API key for TMDB wasn't provided use the mock module to mimic the API
+  // if an API key for TMDB isn't provided, use the mock module to mimic the API
   movieDB: require(TMDB_API_KEY ? './moviedb' : './moviedb-mock')(TMDB_API_KEY),
 
   classifier: watson.natural_language_classifier({
