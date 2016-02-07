@@ -1,12 +1,14 @@
 # Movie Assistant
 
-  This is a streamlined version of the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application, created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). This application is an [Application Starter Kit](#application-starter-kit) that is designed to quickly get you up and running with a common industry pattern, and which can serve as the basis for your own applications that follow that pattern.
+This application is an [Application Starter Kit](#application-starter-kit) that is designed to quickly get you up and running with a common industry pattern, and can serve as the basis for your own applications that follow that pattern. This app was created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). Another application that demonstrates this pattern is the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application that is available in the Watson Developer Cloud website's [Application Gallery](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html).
 
 Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, and to deploy your own copy of this application on Bluemix:
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
-**Notes:** The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api). See step 8 in the [Getting Started](#getting-started) section. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
+**IMPORTANT:**
+  1. The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api), which you can not do when using the **Deploy to Bluemix** button. See [step 8](#step8) in the [Getting Started](#getting-started) section.
+  2. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
@@ -25,7 +27,7 @@ Give it a try! Click the button below to fork the repository that contains the s
 
 This app provides a conversational interface that lets users search for movies based on a set of criteria. The dialog system is built to understand natural language related to searching and selecting movies. For example, "I'd like to see a recent R rated drama" returns the names of all R-rated dramas that have been released in the last 30 days.
 
-This dialog system also understands variations of text, which allows users to phrase their responses in many different ways. For example, the system might ask, "Do you want to watch an upcoming movie or one that's playing tonight?" The user can reply with "tonight" or "Show me movies playing currently," and the system understands that the user wants to know about current movies.
+This application's dialog system also understands variations of text, which allows users to phrase their responses in many different ways. For example, the system might ask, "Do you want to watch an upcoming movie or one that's playing tonight?" The user can reply with "tonight" or "Show me movies playing currently," and the system understands that the user wants to know about current movies.
 
 The conversation is designed to obtain three pieces of information before searching the movie repository:
 
@@ -36,13 +38,15 @@ The conversation is designed to obtain three pieces of information before search
 Users can search across all genres and ratings by answering "no" to the corresponding questions.
 
 ## Getting Started
-If you've [forked the project](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and want to push that fork to Bluemix, do the following steps. If you want to run the application locally using a clone of the project, see the next section, [Running the application locally](#running-the-application-locally):
+The application is written in [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  Instructions for downloading and installing these are included in the following procedure.
+
+If you've [forked the project](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and want to push that fork to Bluemix, do the following steps. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
 
   1. Clone your fork of the project repository to your local system.
 
   2. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use, as are GA services in the standard plan below a certain usage threshold.
 
-  3. Download and install the [Cloud-foundry CLI][cloud_foundry] tool.
+3. Download and install the [Cloud-foundry CLI][cloud_foundry] tool.
 
   4. Edit the `manifest.yml` file in your fork and replace `<application-name>` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `<application-name>.mybluemix.net`.
 
@@ -76,8 +80,8 @@ If you've [forked the project](https://github.com/germanattanasio/movie-assistan
     $ cf create-service natural_language_classifier standard classifier-service
     ```
 
-  8. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key]. Add the API key to the app by editing the `api/servies.js` file line 29 to:
-    File `api/servies.js`:
+  <a name="step8"></a>
+  8. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key]. Add the API key to the app by editing the line 29 of the file `api/services.js` to read:
 
     ```js
     var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your API Key>;
@@ -103,7 +107,7 @@ You can retrieve these ids at `<application-name>.mybluemix.net/api/services`, w
 ```
 
 ## Running the application locally
-  The application is built on [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  Instructions for downloading and installing these are included in the following procedure:
+  The application is written in [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  Instructions for downloading and installing these are included in the following procedure:
 
   1. Clone the [Movie Assistant repository](https://github.com/germanattanasio/movie-assistant) into a local folder, and go to that folder.
 
@@ -230,7 +234,6 @@ Next, we need to acquire any additional information that is required to complete
 ### Some best practices
  * When using the Natural Language Classifier, there should be approximately 10 classes.  Each class should have 15 examples of possible user inputs. This provides the service with enough information to build the deep machine learning model that will classify future user inputs.
  * When using the Dialog service, define different opening sentences in the dialog flow (.xml file). This will prevent repetitive conversations where the dialog always asks the same questions.
- * **TODO:**
 
 ### Reference information
 The following links provide more information about the Dialog and Natural Language Classifier services, including tutorials on using those services:
@@ -238,17 +241,18 @@ The following links provide more information about the Dialog and Natural Langua
 ##### Dialog
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/): Get an in-depth knowledge of the Dialog service
-* [API Explorer](https://watson-api-explorer.mybluemix.net/apis/dialog-v1): Try out the API
+* [API reference](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/dialog/api/v1/): SDK code examples and reference
+* [API explorer](https://watson-api-explorer.mybluemix.net/apis/dialog-v1): Try out the REST API
 * [Creating your own dialog](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/tutorial_advanced.shtml): Design your own dialog by working through a tutorial
 * [Natural conversation tutorial](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/ega_docs/dialog_ega.shtml#naturalconvo_design): Advance tutorial on how to create a conversion like the one in this sample application
 
 ##### Natural Language Classifier
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/): Get an in-depth knowledge of the Natural Language Classifier service
+* [API reference](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/natural-language-classifier/api/v1/): SDK code examples and reference
 * [API Explorer](https://watson-api-explorer.mybluemix.net/apis/natural-language-classifier-v1): Try out the API
 * [Creating your own classifier](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/get_start.shtml): How to use the API to create and use your own classifier
 * [Understanding how Dialog uses the output from the Natural Language Classifier](http://heidloff.net/article/cognitive-question-answer-systems-bluemix-watson)
-
 
 ## Troubleshooting
 
