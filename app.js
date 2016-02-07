@@ -78,7 +78,7 @@ app.post('/api/conversation', function(req, res, next) {
     .then(function(result) {
       var conversation = result[0];
       if (searchNow(conversation.response.join(' '))) {
-        log('4. dialog thing we have information enough to search for movies');
+        log('4. dialog thinks we have information enough to search for movies');
         var searchParameters = parseSearchParameters(conversation);
         conversation.response = conversation.response.slice(0, 1);
         log('5. searching for movies in themoviedb.com');
