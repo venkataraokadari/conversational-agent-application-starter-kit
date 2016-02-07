@@ -7,7 +7,7 @@ Give it a try! Click the button below to fork the repository that contains the s
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
 **IMPORTANT:**
-  1. The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api), which you can not do when using the **Deploy to Bluemix** button. See [step 8](#step8) in the [Getting Started](#getting-started) section.
+  1. The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api), which you can not do when using the **Deploy to Bluemix** button. See [step 9](#step9) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
   2. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
@@ -37,67 +37,76 @@ The conversation is designed to obtain three pieces of information before search
 
 Users can search across all genres and ratings by answering "no" to the corresponding questions.
 
-## Getting Started
+## Getting started
 The application is written in [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  Instructions for downloading and installing these are included in the following procedure.
 
-If you've [forked the project](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and want to push that fork to Bluemix, do the following steps. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
+**Important:** If you used the `Deploy to Bluemix` button to deploy an instance of this application to Bluemix automatically, you will have to delete that application and the services that it used before you can build and deploy an application manually. You can use the `cf apps` command to see the instances of the Dialog and NLC services that your application uses, use the `cf delete application-name` command to delete the application, and use the `cf delete-services service--name` command to delete each of the Dialog and NLC service instance that the application used.
 
-  1. Clone your fork of the project repository to your local system.
+The following instructions explain how to [fork the project on GitHub](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and push that fork to Bluemix using the command-line interface (CLI) for Cloud Foundry. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
+
+  1. Log into GitHub and fork the project repository. Clone your fork to a folder on your local system and change to that folder.
 
   2. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use, as are GA services in the standard plan below a certain usage threshold.
 
-3. Download and install the [Cloud-foundry CLI][cloud_foundry] tool.
+  3. if it is not already installed on your system, download and install the [Cloud-foundry CLI][cloud_foundry] tool.
 
-  4. Edit the `manifest.yml` file in your fork and replace `<application-name>` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `<application-name>.mybluemix.net`.
+  4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
+
+  <a name="step5"></a>
+  5. Edit the `manifest.yml` file in the folder that contains your fork and replace `application-name` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `application-name.mybluemix.net`.
 
     ```yml
     applications:
     - services:
       - dialog-service
       - classifier-service
-      name: <application-name>
+      name: application-name
       command: npm start
       path: .
       memory: 256M
     ```
 
-  5. Connect to Bluemix by running the following commands in a terminal window:
+  6. Connect to Bluemix by running the following commands in a terminal window:
 
     ```sh
     $ cf api https://api.ng.bluemix.net
-    $ cf login -u <your-Bluemix-ID>
+    $ cf login -u <your-Bluemix-ID> -p <your-Bluemix-password>
     ```
 
-  6. Create an instance of the Dialog service in Bluemix by running the following command:
+  7. Create an instance of the Dialog service in Bluemix by running the following command:
 
     ```sh
     $ cf create-service dialog standard dialog-service
     ```
+    **Note:** You will see a message that states "Attention: The plan `standard` of service `dialog` is not free.  The instance `dialog-service` will incur a cost.  Contact your administrator if you think this is in error.". The first 1000 API calls per month to the Dialog service are free under the standard plan, so there will be no charge if you remain below this limit.
 
-  7. Create the Natural Language Classifier service:
+  8. Create the Natural Language Classifier service:
 
     ```sh
     $ cf create-service natural_language_classifier standard classifier-service
     ```
+    **Note:** You will see a message that states "Attention: The plan `standard` of service `natural_language_classifier` is not free.  The instance `classifier-service` will incur a cost.  Contact your administrator if you think this is in error.". The first NLC  instance that you create is free under the standard plan, so there will be no chanrge if you only create a single classifier instance for use by this application.
 
-  <a name="step8"></a>
-  8. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key]. Add the API key to the app by editing the line 29 of the file `api/services.js` to read:
+  <a name="step9"></a>
+  9. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key].
+
+  10. Add the API key from [themoviedb.com][the_movie_db] to the app by editing the line 29 of the file `api/services.js` to read:
 
     ```js
-    var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your API Key>;
+    var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your themoviedb.com API Key>;
   	```
-  9. Push the updated application live by running the following command:
+  11. Push the updated application live by running the following command:
 
     ```sh
     $ cf push
     ```
 
-The first time it runs, the application creates:
+The first time it runs, the application can take up to 20 minutes to train the classifier based on data from [themoviedb.com][the_movie_db]. It will also create the following files in your source directory:
 
   * A dialog flow using: `training/dialog_and_classifier.xml` and writes the dialog id to the file `/training/dialog_id`
   * A classifier using: `training/classifier_training.csv` and writes classifier id to the file `/training/classifier_id`
 
-You can retrieve these ids at `<application-name>.mybluemix.net/api/services`, where `<application-name>` is the name that you gave your application in step 4 of the previous list. The response will be similar to:
+You should not need to reference these, but if you do, you can retrieve these ids at `application-name.mybluemix.net/api/services`, where `application-name` is the name that you gave your application in [step 5](#step5) of the previous list. The response will be similar to:
 
 ```json
 {
@@ -107,13 +116,10 @@ You can retrieve these ids at `<application-name>.mybluemix.net/api/services`, w
 ```
 
 ## Running the application locally
-  The application is written in [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  Instructions for downloading and installing these are included in the following procedure:
 
-  1. Clone the [Movie Assistant repository](https://github.com/germanattanasio/movie-assistant) into a local folder, and go to that folder.
+First, make sure that you followed steps 1 through 9 in the [previous section](#getting-started) and that you are still logged in to Bluemix. Next:
 
-  2. If you did not work through the steps in the [Getting Started](#getting-started) section, follow steps 2 through 8 in that section, editing the `manifest.yml` file in your local clone of the repository instead of in a fork of the repository.
-
-  3. Create a `.env.js` file in the root directory of the project with the following content:
+  1. Create a `.env.js` file in the root directory of the project with the following content:
 
   ```js
   module.exports = {
@@ -137,7 +143,7 @@ You can retrieve these ids at `<application-name>.mybluemix.net/api/services`, w
   };
   ```
 
-  4. Copy the `username`, `password`, and `url` credentials from your `dialog-service` and `classifier-service` services in Bluemix to the previous file. To see the service credentials for each of your service instances, run the following command, replacing `<application-name>` with the name of the application that you specified in your `manifest.yml` file:
+  2. Copy the `username`, `password`, and `url` credentials from your `dialog-service` and `classifier-service` services in Bluemix to the previous file. To see the service credentials for each of your service instances, run the following command, replacing `<application-name>` with the name of the application that you specified in your `manifest.yml` file:
 
     ```sh
     $ cf env <application-name>
@@ -162,21 +168,18 @@ You can retrieve these ids at `<application-name>.mybluemix.net/api/services`, w
     }
     ```
 
-  5. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
-
-
-  6. Install any dependencies that the application requires:
+  3. Install any dependencies that a local version of your application requires:
 
     ```sh
     $ npm install
     ```
 
-  7. Start the application by running:
+  4. Start the application by running:
 
     ```sh
     $ gulp
     ```
-  8. Open [http://localhost:5000](http://localhost:5000) to see the running application.
+  5. Open [http://localhost:5000](http://localhost:5000) to see the running application.
 
 
 ## Application Starter Kit
