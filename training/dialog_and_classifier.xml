@@ -260,7 +260,7 @@ Line={Class1_Confidence}+{Class2_Confidence};</script>
                         </if>
                         <output isInsertDNRStatement="true" id="output_2531608">
                             <prompt selectionType="SEQUENTIAL">
-                                <item>I'm not sure what you mean. Try &lt;i&gt;What's in theaters?&lt;/i&gt;
+                                <item>I'm not sure what you mean. Try &lt;i&gt;What's playing?&lt;/i&gt;
 </item>
                                 <item>I'm afraid I don't understand. I can't recognize movie titles at this time.</item>
                                 <item>I'm sorry, I don't understand. Try &lt;i&gt;What's playing?&lt;/i&gt;</item>
@@ -2817,7 +2817,7 @@ EndTime={DateTime_Mentioned_ENT.value:FROM_FULL}</script>
                         <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
                         <output>
                             <prompt selectionType="RANDOM">
-                                <item>Try saying &lt;i&gt;What's in theaters?&lt;/i&gt; or &lt;i&gt;I want to see a comedy&lt;/i&gt;.</item>
+                                <item>Try saying &lt;i&gt;What's playing?&lt;/i&gt; or &lt;i&gt;I want to see a comedy&lt;/i&gt;.</item>
                             </prompt>
                         </output>
                     </input>
@@ -4772,25 +4772,25 @@ Say &lt;i&gt;got to go&lt;/i&gt; or &lt;i&gt;bye&lt;/i&gt; when you're finished.
     <constants>
         <var_folder name="Home">
             <var_folder name="General" type="CONST">
-                <var name="UI_DETAILS" type="TAG" description="UI Details">&amp;lt;Title&amp;gt;Watson&amp;lt;/Title&amp;gt; 
- &amp;lt;Head&amp;gt;&amp;lt;/Head&amp;gt; 
- &amp;lt;Header&amp;gt;&amp;lt;img id=&amp;quot;headerlogo&amp;quot; src=&amp;quot;http://www-03.ibm.com/ibm/history/ibm100/images/icp/R259780Y30165R43/us__en_us__ibm100__watson__watson_logo__220x125.png&amp;quot; width=&amp;quot;250&amp;quot; /&amp;gt;&amp;lt;/Header&amp;gt; 
- &amp;lt;Body&amp;gt;&amp;lt;/Body&amp;gt; 
- &amp;lt;Footer&amp;gt;Powered by Watson&amp;lt;/Footer&amp;gt; 
- &amp;lt;RelatedItemsLabel&amp;gt;Learn more about...&amp;lt;/RelatedItemsLabel&amp;gt; 
- &amp;lt;InitInputBoxLabel&amp;gt;Type here...&amp;lt;/InitInputBoxLabel&amp;gt; 
- &amp;lt;UserSayLabel&amp;gt;You:&amp;lt;/UserSayLabel&amp;gt; 
- &amp;lt;SayButtonLabel&amp;gt;Say&amp;lt;/SayButtonLabel&amp;gt; 
- &amp;lt;SayButtonImage&amp;gt;&amp;lt;/SayButtonImage&amp;gt; 
- &amp;lt;PopupLoadMsg&amp;gt;&amp;lt;/PopupLoadMsg&amp;gt; 
- &amp;lt;CloseWindowCode&amp;gt;&amp;lt;/CloseWindowCode&amp;gt; 
- &amp;lt;DynamicMessaging&amp;gt;0&amp;lt;/DynamicMessaging&amp;gt; 
- &amp;lt;Avatar&amp;gt;0&amp;lt;/Avatar&amp;gt; 
- &amp;lt;AvatarSpeechEngineId&amp;gt;-1&amp;lt;/AvatarSpeechEngineId&amp;gt; 
- &amp;lt;AvatarSpeechLanguageId&amp;gt;-1&amp;lt;/AvatarSpeechLanguageId&amp;gt; 
- &amp;lt;AvatarSpeechVoiceId&amp;gt;-1&amp;lt;/AvatarSpeechVoiceId&amp;gt; 
+                <var name="UI_DETAILS" type="TAG" description="UI Details">&amp;lt;Title&amp;gt;Watson&amp;lt;/Title&amp;gt;
+ &amp;lt;Head&amp;gt;&amp;lt;/Head&amp;gt;
+ &amp;lt;Header&amp;gt;&amp;lt;img id=&amp;quot;headerlogo&amp;quot; src=&amp;quot;http://www-03.ibm.com/ibm/history/ibm100/images/icp/R259780Y30165R43/us__en_us__ibm100__watson__watson_logo__220x125.png&amp;quot; width=&amp;quot;250&amp;quot; /&amp;gt;&amp;lt;/Header&amp;gt;
+ &amp;lt;Body&amp;gt;&amp;lt;/Body&amp;gt;
+ &amp;lt;Footer&amp;gt;Powered by Watson&amp;lt;/Footer&amp;gt;
+ &amp;lt;RelatedItemsLabel&amp;gt;Learn more about...&amp;lt;/RelatedItemsLabel&amp;gt;
+ &amp;lt;InitInputBoxLabel&amp;gt;Type here...&amp;lt;/InitInputBoxLabel&amp;gt;
+ &amp;lt;UserSayLabel&amp;gt;You:&amp;lt;/UserSayLabel&amp;gt;
+ &amp;lt;SayButtonLabel&amp;gt;Say&amp;lt;/SayButtonLabel&amp;gt;
+ &amp;lt;SayButtonImage&amp;gt;&amp;lt;/SayButtonImage&amp;gt;
+ &amp;lt;PopupLoadMsg&amp;gt;&amp;lt;/PopupLoadMsg&amp;gt;
+ &amp;lt;CloseWindowCode&amp;gt;&amp;lt;/CloseWindowCode&amp;gt;
+ &amp;lt;DynamicMessaging&amp;gt;0&amp;lt;/DynamicMessaging&amp;gt;
+ &amp;lt;Avatar&amp;gt;0&amp;lt;/Avatar&amp;gt;
+ &amp;lt;AvatarSpeechEngineId&amp;gt;-1&amp;lt;/AvatarSpeechEngineId&amp;gt;
+ &amp;lt;AvatarSpeechLanguageId&amp;gt;-1&amp;lt;/AvatarSpeechLanguageId&amp;gt;
+ &amp;lt;AvatarSpeechVoiceId&amp;gt;-1&amp;lt;/AvatarSpeechVoiceId&amp;gt;
  &amp;lt;CSS_Body&amp;gt;background-color:#FFFFFF;
-&amp;lt;/CSS_Body&amp;gt; 
+&amp;lt;/CSS_Body&amp;gt;
  &amp;lt;CSS_ChatHistoryBox&amp;gt;background-color:#FFFFFF;
 text-align:left;
 height:5000px;
@@ -4804,17 +4804,17 @@ word-wrap: break-word;
 border-style:solid;
 border-width:1px;
 border-color:#000000;
-&amp;lt;/CSS_ChatHistoryBox&amp;gt; 
+&amp;lt;/CSS_ChatHistoryBox&amp;gt;
  &amp;lt;CSS_CyberTwinText&amp;gt;font-family: verdana, arial, sans-serif;
 font-size: 11px;
-&amp;lt;/CSS_CyberTwinText&amp;gt; 
+&amp;lt;/CSS_CyberTwinText&amp;gt;
  &amp;lt;CSS_CyberTwinTextLink&amp;gt;font-family: verdana, arial, sans-serif;
 font-size: 11px;
-&amp;lt;/CSS_CyberTwinTextLink&amp;gt; 
+&amp;lt;/CSS_CyberTwinTextLink&amp;gt;
  &amp;lt;CSS_UserText&amp;gt;font-family: verdana, arial, sans-serif;
 font-size: 11px;
 font-weight: normal;
-&amp;lt;/CSS_UserText&amp;gt; 
+&amp;lt;/CSS_UserText&amp;gt;
  &amp;lt;CSS_InputBox&amp;gt;font-family: verdana, arial, sans-serif;
 font-size: 11px;
 background-color:#FFFFFF;
@@ -4823,7 +4823,7 @@ height: 40px;
 border-width: 1px;
 border-style: solid;
 border-color: #000000;
-&amp;lt;/CSS_InputBox&amp;gt; 
+&amp;lt;/CSS_InputBox&amp;gt;
  &amp;lt;CSS_RelatedItemsBox&amp;gt;background-color:#D5D5D5;
 text-align:left;
 height:110px;
@@ -4967,14 +4967,14 @@ body
 
 .title
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 14px;
 	font-weight: bold;
 }
 
 .subtitle
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 13px;
 	font-weight: none;
 }
@@ -4988,7 +4988,7 @@ body
 
 .sectionHeading
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	background-color: #eeeeee;
@@ -5003,7 +5003,7 @@ body
 
 .subsectionHeading
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	background-color: #eeeeee;
@@ -5012,18 +5012,18 @@ body
 
 .label
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: none;
 	width: 300px;
 	background-color: #eeeeff;
 	padding: 3px 3px 3px 3px;
-	
+
 }
 
 .value
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: none;
 	width: 50px;
@@ -5033,7 +5033,7 @@ body
 
 .xaxislabel
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
 	background-color: #eeeeff;
@@ -5042,7 +5042,7 @@ body
 
 .yaxislabel
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
 	background-color: #eeeeff;
@@ -5090,14 +5090,14 @@ var tableSetTemplateOI= &amp;quot;&amp;lt;table class=subsection&amp;gt;&amp;lt;
 &amp;lt;tr&amp;gt;
 	&amp;lt;td&amp;gt;
 &amp;lt;%
-	var conversionSet = VALUE_SET(	&amp;quot;Visitors and chats&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;, 
-				totalWebsiteVisitors, &amp;quot;1&amp;quot;, &amp;quot;Website visitors&amp;quot;, 
-				numChats, &amp;quot;1&amp;quot;, &amp;quot;Website visitors who chatted to the CyberTwin&amp;quot;, 
+	var conversionSet = VALUE_SET(	&amp;quot;Visitors and chats&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;,
+				totalWebsiteVisitors, &amp;quot;1&amp;quot;, &amp;quot;Website visitors&amp;quot;,
+				numChats, &amp;quot;1&amp;quot;, &amp;quot;Website visitors who chatted to the CyberTwin&amp;quot;,
 				FORMAT_NUMBER(MULTIPLY(DIVIDE(numChats, totalWebsiteVisitors), &amp;quot;100&amp;quot;), &amp;quot;##.##&amp;quot;), &amp;quot;0&amp;quot;, &amp;quot;Chat Uptake&amp;quot;);
 
 	PRINT_TEMPLATE(conversionSet, tableSetTemplate1);
 %&amp;gt;
-		
+
 	&amp;lt;/td&amp;gt;
 &amp;lt;/tr&amp;gt;
 &amp;lt;/table&amp;gt;
@@ -5111,37 +5111,37 @@ var tableSetTemplateOI= &amp;quot;&amp;lt;table class=subsection&amp;gt;&amp;lt;
 &amp;lt;tr&amp;gt;
 	&amp;lt;td&amp;gt;
 &amp;lt;%
-	var chatVolumeSet = VALUE_SET(&amp;quot;Chat Volume&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;, 
-		numChats, &amp;quot;1&amp;quot;, &amp;quot;Total Chats&amp;quot;, 
-		numEngagingChats, &amp;quot;1&amp;quot;, &amp;quot;Engaging Chats&amp;quot;, 
+	var chatVolumeSet = VALUE_SET(&amp;quot;Chat Volume&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;,
+		numChats, &amp;quot;1&amp;quot;, &amp;quot;Total Chats&amp;quot;,
+		numEngagingChats, &amp;quot;1&amp;quot;, &amp;quot;Engaging Chats&amp;quot;,
 		numNonEngagingChats, &amp;quot;1&amp;quot;, &amp;quot;NonEngaging Chats&amp;quot;);
 
 	PRINT_TEMPLATE(chatVolumeSet, tableSetTemplate1);
-	
 
 
-	var timeChatsSet = VALUE_SET(	&amp;quot;Chat Time&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;, 
-				CHATSTATS_TIME_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg minutes&amp;quot;, 
-				CHATSTATS_TIME_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min minutes&amp;quot;, 
-				CHATSTATS_TIME_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max minutes&amp;quot;, 
+
+	var timeChatsSet = VALUE_SET(	&amp;quot;Chat Time&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;,
+				CHATSTATS_TIME_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg minutes&amp;quot;,
+				CHATSTATS_TIME_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min minutes&amp;quot;,
+				CHATSTATS_TIME_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max minutes&amp;quot;,
 				CHATSTATS_TIME_TOTAL(), &amp;quot;1&amp;quot;, &amp;quot;Total minutes&amp;quot;);
 
 	PRINT_TEMPLATE(timeChatsSet, tableSetTemplate1);
 
-	PRINT_GRAPH_TEMPLATE(CHATSTATS_TIME_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);	
+	PRINT_GRAPH_TEMPLATE(CHATSTATS_TIME_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);
 
 
 
 
-	var msgChatsSet = VALUE_SET(	&amp;quot;Chat Messages&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;, 
-				CHATSTATS_MSG_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg messages&amp;quot;, 
-				CHATSTATS_MSG_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min messages&amp;quot;, 
-				CHATSTATS_MSG_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max messages&amp;quot;, 
+	var msgChatsSet = VALUE_SET(	&amp;quot;Chat Messages&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;,
+				CHATSTATS_MSG_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg messages&amp;quot;,
+				CHATSTATS_MSG_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min messages&amp;quot;,
+				CHATSTATS_MSG_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max messages&amp;quot;,
 				CHATSTATS_MSG_TOTAL(), &amp;quot;1&amp;quot;, &amp;quot;Total messages&amp;quot;);
 
 	PRINT_TEMPLATE(msgChatsSet, tableSetTemplate1);
 
-	PRINT_GRAPH_TEMPLATE(CHATSTATS_MSG_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);	
+	PRINT_GRAPH_TEMPLATE(CHATSTATS_MSG_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);
 	%&amp;gt;
 
 
@@ -5185,11 +5185,11 @@ var tableSetTemplateOI= &amp;quot;&amp;lt;table class=subsection&amp;gt;&amp;lt;
 	var chatsDeflected = MULTIPLY(numChats, normFeedback);
 	var savings = MULTIPLY(chatsDeflected, costPerContactCentreContact);
 
-	var contactCentreSavingsSet = VALUE_SET(	&amp;quot;Contact center savings with CyberTwin&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;, 
-					numChats, &amp;quot;1&amp;quot;, &amp;quot;Number of chats&amp;quot;, 
-					percFeedback, &amp;quot;0&amp;quot;, &amp;quot;% would have contacted the contact center&amp;quot;, 
-					chatsDeflected, &amp;quot;1&amp;quot;, &amp;quot;Chats deflected&amp;quot;, 
-					costPerContactCentreContact, &amp;quot;5&amp;quot;, &amp;quot;Cost per contact center contact&amp;quot;, 
+	var contactCentreSavingsSet = VALUE_SET(	&amp;quot;Contact center savings with CyberTwin&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,
+					numChats, &amp;quot;1&amp;quot;, &amp;quot;Number of chats&amp;quot;,
+					percFeedback, &amp;quot;0&amp;quot;, &amp;quot;% would have contacted the contact center&amp;quot;,
+					chatsDeflected, &amp;quot;1&amp;quot;, &amp;quot;Chats deflected&amp;quot;,
+					costPerContactCentreContact, &amp;quot;5&amp;quot;, &amp;quot;Cost per contact center contact&amp;quot;,
 					savings, &amp;quot;5&amp;quot;, &amp;quot;&amp;lt;b&amp;gt;Total Cost Deflected by CyberTwin&amp;lt;/b&amp;gt;&amp;quot;);
 
 	PRINT_TEMPLATE(contactCentreSavingsSet, tableSetTemplate2);
@@ -5219,14 +5219,14 @@ var tableSetTemplateOI= &amp;quot;&amp;lt;table class=subsection&amp;gt;&amp;lt;
 		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Length of chats - avg. messages&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;&amp;lt;%PRINT_NUMBER(CHATSTATS_MSG_AVG(),&amp;quot;##.#&amp;quot;);%&amp;gt;msgs&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;-&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;-&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
 		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Chats cut short&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;0%&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;15%&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;14% abandoned, 19% unresolved on first call&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
 		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Abandoned calls&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;0%&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;14%&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
-		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Agent utilisation&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;100%, 24 hrs a day&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;-&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;59%&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;	
-		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;# Concurrent sessions&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;thousands per server&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;1&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;	
+		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Agent utilisation&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;100%, 24 hrs a day&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;-&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;59%&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
+		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;# Concurrent sessions&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;thousands per server&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;1&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
 		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Staff attrition&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;0%&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;-&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;24%&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
 		&amp;lt;/table&amp;gt;
 
 /*
 		&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
-		
+
 		&amp;lt;table&amp;gt;
 		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Overall Accuracy&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;&amp;lt;%PRINT_NUMBER(ACCURACY_RATE(),&amp;quot;##.#%&amp;quot;);%&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
 		&amp;lt;tr&amp;gt;&amp;lt;td class=label&amp;gt;Direct Match Rate&amp;lt;/td&amp;gt;&amp;lt;td class=value&amp;gt;&amp;lt;%PRINT_NUMBER(DIRECT_MATCH_RATE(),&amp;quot;##.#%&amp;quot;);%&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
@@ -5246,11 +5246,11 @@ var tableSetTemplateOI= &amp;quot;&amp;lt;table class=subsection&amp;gt;&amp;lt;
 &amp;lt;/tr&amp;gt;
 &amp;lt;tr&amp;gt;
 	&amp;lt;td&amp;gt;
-	
+
 &amp;lt;%
 	var foldersSet = HIT_COUNT_TOP(&amp;quot;FOLDER&amp;quot;, topHitsNodeIdScope, numTopHits, &amp;quot;Most Popular Topics of Interest&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Topic&amp;quot;);
 	PRINT_GRAPH_TEMPLATE(foldersSet, &amp;quot;PIE&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetTemplate2);
-	
+
 	var questionSet = HIT_COUNT_TOP(&amp;quot;INPUT&amp;quot;, topHitsNodeIdScope, numTopHits, &amp;quot;Most Frequently Asked Questions&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Question&amp;quot;);
 PRINT_TEMPLATE(questionSet, tableSetTemplate3);
 
@@ -5308,14 +5308,14 @@ body
 
 .title
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 14px;
 	font-weight: bold;
 }
 
 .subtitle
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 13px;
 	font-weight: none;
 }
@@ -5329,7 +5329,7 @@ body
 
 .sectionHeading
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	background-color: #eeeeee;
@@ -5344,7 +5344,7 @@ body
 
 .subsectionHeading
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	background-color: #eeeeee;
@@ -5353,29 +5353,29 @@ body
 
 .label
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: none;
 	width: 300px;
 	background-color: #eeeeff;
 	padding: 3px 3px 3px 3px;
-	
+
 }
 
 
 .simplelabel
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: none;
 	background-color: #eeeeff;
 	padding: 3px 3px 3px 3px;
-	
+
 }
 
 .value
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: none;
 	width: 50px;
@@ -5385,7 +5385,7 @@ body
 
 .simplevalue
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: none;
 	background-color: #eeeeff;
@@ -5394,7 +5394,7 @@ body
 
 .xaxislabel
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
 	background-color: #eeeeff;
@@ -5403,7 +5403,7 @@ body
 
 .yaxislabel
 {
-	font-family: verdana, arial, sans-serif; 
+	font-family: verdana, arial, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
 	background-color: #eeeeff;
@@ -5451,39 +5451,39 @@ var tableSetGraphTemplate4 = &amp;quot;&amp;lt;table class=subsection&amp;gt;&am
 &amp;lt;tr&amp;gt;
 	&amp;lt;td&amp;gt;
 &amp;lt;%
-	var chatVolumeSet = VALUE_SET(&amp;quot;Chat Volume&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;, 
-		numChats, &amp;quot;1&amp;quot;, &amp;quot;Total Chats&amp;quot;, 
-		numEngagingChats, &amp;quot;1&amp;quot;, &amp;quot;Engaging Chats&amp;quot;, 
+	var chatVolumeSet = VALUE_SET(&amp;quot;Chat Volume&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;,
+		numChats, &amp;quot;1&amp;quot;, &amp;quot;Total Chats&amp;quot;,
+		numEngagingChats, &amp;quot;1&amp;quot;, &amp;quot;Engaging Chats&amp;quot;,
 		numNonEngagingChats, &amp;quot;1&amp;quot;, &amp;quot;NonEngaging Chats&amp;quot;);
 
 	PRINT_TEMPLATE(chatVolumeSet, tableSetTemplate1);
-	
 
 
-	var timeChatsSet = VALUE_SET(	&amp;quot;Chat Time&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;, 
-				CHATSTATS_TIME_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg minutes&amp;quot;, 
-				CHATSTATS_TIME_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min minutes&amp;quot;, 
-				CHATSTATS_TIME_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max minutes&amp;quot;, 
+
+	var timeChatsSet = VALUE_SET(	&amp;quot;Chat Time&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;,
+				CHATSTATS_TIME_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg minutes&amp;quot;,
+				CHATSTATS_TIME_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min minutes&amp;quot;,
+				CHATSTATS_TIME_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max minutes&amp;quot;,
 				CHATSTATS_TIME_MEDIAN(), &amp;quot;1&amp;quot;, &amp;quot;Median minutes&amp;quot;,
 				CHATSTATS_TIME_TOTAL(), &amp;quot;1&amp;quot;, &amp;quot;Total minutes&amp;quot;);
 
 	PRINT_TEMPLATE(timeChatsSet, tableSetTemplate1);
 
-	PRINT_GRAPH_TEMPLATE(CHATSTATS_TIME_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);	
+	PRINT_GRAPH_TEMPLATE(CHATSTATS_TIME_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);
 
 
 
 
-	var msgChatsSet = VALUE_SET(	&amp;quot;Chat Messages&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;, 
-				CHATSTATS_MSG_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg messages&amp;quot;, 
-				CHATSTATS_MSG_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min messages&amp;quot;, 
-				CHATSTATS_MSG_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max messages&amp;quot;, 
-				CHATSTATS_MSG_MEDIAN(), &amp;quot;1&amp;quot;, &amp;quot;Median messages&amp;quot;, 
+	var msgChatsSet = VALUE_SET(	&amp;quot;Chat Messages&amp;quot;, &amp;quot;#&amp;quot;, &amp;quot;Measurement&amp;quot;,
+				CHATSTATS_MSG_AVG(), &amp;quot;1&amp;quot;, &amp;quot;Avg messages&amp;quot;,
+				CHATSTATS_MSG_MIN(), &amp;quot;1&amp;quot;, &amp;quot;Min messages&amp;quot;,
+				CHATSTATS_MSG_MAX(), &amp;quot;1&amp;quot;, &amp;quot;Max messages&amp;quot;,
+				CHATSTATS_MSG_MEDIAN(), &amp;quot;1&amp;quot;, &amp;quot;Median messages&amp;quot;,
 				CHATSTATS_MSG_TOTAL(), &amp;quot;1&amp;quot;, &amp;quot;Total messages&amp;quot;);
 
 	PRINT_TEMPLATE(msgChatsSet, tableSetTemplate1);
 
-	PRINT_GRAPH_TEMPLATE(CHATSTATS_MSG_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);	
+	PRINT_GRAPH_TEMPLATE(CHATSTATS_MSG_SPREAD(&amp;quot;&amp;quot;,&amp;quot;%&amp;quot;,&amp;quot;Measurement&amp;quot;), &amp;quot;BAR&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;300&amp;quot;, tableSetGraphTemplate3);
 	%&amp;gt;
 
 
@@ -5509,7 +5509,7 @@ var tableSetGraphTemplate4 = &amp;quot;&amp;lt;table class=subsection&amp;gt;&am
 	&amp;lt;/td&amp;gt;
 &amp;lt;/tr&amp;gt;
 &amp;lt;/table&amp;gt;
-	
+
 &amp;lt;table class=section&amp;gt;
 &amp;lt;tr&amp;gt;
 	&amp;lt;td class=sectionHeading&amp;gt;Input Node Stats&amp;lt;/td&amp;gt;
@@ -5520,7 +5520,7 @@ var tableSetGraphTemplate4 = &amp;quot;&amp;lt;table class=subsection&amp;gt;&am
 	&amp;lt;/td&amp;gt;
 &amp;lt;/tr&amp;gt;
 &amp;lt;/table&amp;gt;
-		
+
 &amp;lt;/body&amp;gt;
 &amp;lt;/html&amp;gt;</script>
         </report>
