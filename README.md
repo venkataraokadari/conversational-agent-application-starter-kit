@@ -1,14 +1,14 @@
-# Movie Assistant
+# Conversational Agent: Movie Assistant
 
-This application is an [Application Starter Kit](#application-starter-kit) that is designed to quickly get you up and running with a common industry pattern, and can serve as the basis for your own applications that follow that pattern. This app was created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). Another application that demonstrates this pattern is the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application that is available in the Watson Developer Cloud website's [Application Gallery](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html).
+This application is an [Application Starter Kit](#application-starter-kit) that is designed to get you up and running quickly with a common industry pattern. It can serve as the basis for your own applications that follow that pattern. This app was created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). Another application that demonstrates this pattern is the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application that is available in the Watson Developer Cloud website's [Application Gallery](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html).
 
-Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, and to deploy your own copy of this application on Bluemix:
+Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, which then deploys your own copy of this application on Bluemix automtically:
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
 
 **IMPORTANT:**
-  1. The application uses mock data for movie suggestions until the user provides an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api), which you can not do when using the **Deploy to Bluemix** button. See [step 9](#step9) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
-  2. When the application is first run, it will automatically train a classifier for NLC. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
+  1. The application uses mock data for movie suggestions until you provide an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api) in your application's source code, which you can not do when using the **Deploy to Bluemix** button. See [step 9](#step9) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
+  2. When the application is first run, it will automatically train a classifier for the Natural Language Classifier service. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
   - [How this app works](#how-this-app-works)
