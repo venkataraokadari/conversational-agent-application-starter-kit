@@ -48,7 +48,7 @@ The following instructions explain how to [fork the project on GitHub](https://g
 
   2. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use, as are GA services in the standard plan below a certain usage threshold.
 
-  3. if it is not already installed on your system, download and install the [Cloud-foundry CLI][cloud_foundry] tool.
+  3. If it is not already installed on your system, download and install the [Cloud-foundry CLI][cloud_foundry] tool.
 
   4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
 
