@@ -1,6 +1,6 @@
 # Conversational Agent: Movie Assistant
 
-This application is an [Application Starter Kit](#application-starter-kit) that is designed to get you up and running quickly with a common industry pattern. It can serve as the basis for your own applications that follow that pattern. This app was created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#conversational-agent). Another application that demonstrates this pattern is the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application that is available in the Watson Developer Cloud website's [Application Gallery](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html).
+This application is an **Application Starter Kit** (ASK) that is designed to get you up and running quickly with a common industry pattern, and to provide information about best practices around Watson services. This application was created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#about-the-conversational-agent-pattern). This application can serve as the basis for your own applications that follow that pattern. Another application that demonstrates this pattern is the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application that is available in the Watson Developer Cloud website's [Application Gallery](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html).
 
 Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, which then deploys your own copy of this application on Bluemix automtically:
 
@@ -14,13 +14,13 @@ Give it a try! Click the button below to fork the repository that contains the s
   - [How this app works](#how-this-app-works)
   - [Getting Started](#getting-started)
   - [Running the application locally](#running-the-application-locally)
-  - [Application Starter Kit](#application-starter-kit)
-  - [Conversational Agent](#conversational-agent)
+  - [About the Conversational Agent pattern](#about-the-conversational-agent-pattern)
     - [When to use this pattern](#when-to-use-this-pattern)
     - [Best practices](#best-practices)
     - [Reference information](#reference-information)
-        - [Dialog](#dialog)
-        - [Natural Language Classifier](#natural-language-classifier)
+      - [Dialog](#dialog)
+      - [Natural Language Classifier](#natural-language-classifier)
+  - [User interface in this sample application](#user-interface-in-this-sample-application)
   - [Troubleshooting](#troubleshooting)
 
 ### How this app works
@@ -40,9 +40,9 @@ Users can search across all genres and ratings by answering "no" to the correspo
 ## Getting started
 The application is written in [Node.js](http://nodejs.org/) and uses [npm](https://www.npmjs.com/).  Instructions for downloading and installing these are included in the following procedure.
 
-**Important:** If you used the `Deploy to Bluemix` button to deploy an instance of this application to Bluemix automatically, you will have to delete that application and the services that it used before you can build and deploy an application manually. You can use the `cf apps` command to see the instances of the Dialog and NLC services that your application uses, use the `cf delete application-name` command to delete the application, and use the `cf delete-services service--name` command to delete each of the Dialog and NLC service instance that the application used.
+**Important:** If you used the `Deploy to Bluemix` button to deploy an instance of this application to Bluemix automatically, you will have to delete that application and the services that it used before you can build and deploy an application manually. You can use the `cf apps` command to see the instances of the Dialog and NLC services that your application uses, use the `cf delete application-name` command to delete the application, and use the `cf delete-services service-name` command to delete each of the Dialog and NLC service instance that the application used.
 
-The following instructions explain how to [fork the project on GitHub](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and push that fork to Bluemix using the command-line interface (CLI) for Cloud Foundry. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
+The following instructions explain how to [fork the project on GitHub](https://github.com/germanattanasio/movie-assistant#fork-destination-box) and push that fork to Bluemix using the `cf` command-line interface (CLI) for Cloud Foundry. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
 
   1. Log into GitHub and fork the project repository. Clone your fork to a folder on your local system and change to that folder.
 
@@ -53,7 +53,7 @@ The following instructions explain how to [fork the project on GitHub](https://g
   4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
 
   <a name="step5"></a>
-  5. Edit the `manifest.yml` file in the folder that contains your fork and replace `application-name` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `application-name.mybluemix.net`.
+  5. Edit the `manifest.yml` file in the folder that contains your fork and replace `application-name` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `application-name.mybluemix.net`. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
     applications:
@@ -63,7 +63,7 @@ The following instructions explain how to [fork the project on GitHub](https://g
       name: application-name
       command: npm start
       path: .
-      memory: 256M
+      memory: 512M
     ```
 
   6. Connect to Bluemix by running the following commands in a terminal window:
@@ -80,12 +80,12 @@ The following instructions explain how to [fork the project on GitHub](https://g
     ```
     **Note:** You will see a message that states "Attention: The plan `standard` of service `dialog` is not free.  The instance `dialog-service` will incur a cost.  Contact your administrator if you think this is in error.". The first 1000 API calls per month to the Dialog service are free under the standard plan, so there will be no charge if you remain below this limit.
 
-  8. Create the Natural Language Classifier service:
+  8. Create an instance of the Natural Language Classifier service in Bluemix by running the following command:
 
     ```sh
     $ cf create-service natural_language_classifier standard classifier-service
     ```
-    **Note:** You will see a message that states "Attention: The plan `standard` of service `natural_language_classifier` is not free.  The instance `classifier-service` will incur a cost.  Contact your administrator if you think this is in error.". The first NLC  instance that you create is free under the standard plan, so there will be no chanrge if you only create a single classifier instance for use by this application.
+    **Note:** You will see a message that states "Attention: The plan `standard` of service `natural_language_classifier` is not free.  The instance `classifier-service` will incur a cost.  Contact your administrator if you think this is in error.". The first NLC instance that you create is free under the standard plan, so there will be no chanrge if you only create a single classifier instance for use by this application.
 
   <a name="step9"></a>
   9. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key].
@@ -181,13 +181,7 @@ First, make sure that you followed steps 1 through 9 in the [previous section](#
     ```
   5. Open [http://localhost:5000](http://localhost:5000) to see the running application.
 
-
-## Application Starter Kit
-An Application Starter Kit (ASK) is a multi-service sample application that is designed to demonstrate common industry `patterns` and best practices around Watson services.
-
-This sample application highlights one of those industry patterns, known as a [Conversational Agent](#conversational-agent).
-
-## Conversational Agent
+## About the Conversational Agent pattern
 
 First, make sure you read the [Reference Information](#reference-information) to understand the services that are involved in this pattern. This reference information will explain common terminology for these services such as `classifier`, `confidence scores`, `intents`, `training`, and so on.
 
@@ -241,7 +235,7 @@ Next, we need to acquire any additional information that is required to complete
 ### Reference information
 The following links provide more information about the Dialog and Natural Language Classifier services, including tutorials on using those services:
 
-##### Dialog
+#### Dialog
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/): Get an in-depth knowledge of the Dialog service
 * [API reference](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/dialog/api/v1/): SDK code examples and reference
@@ -249,13 +243,23 @@ The following links provide more information about the Dialog and Natural Langua
 * [Creating your own dialog](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/tutorial_advanced.shtml): Design your own dialog by working through a tutorial
 * [Natural conversation tutorial](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/ega_docs/dialog_ega.shtml#naturalconvo_design): Advance tutorial on how to create a conversion like the one in this sample application
 
-##### Natural Language Classifier
+#### Natural Language Classifier
 
 * [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/): Get an in-depth knowledge of the Natural Language Classifier service
 * [API reference](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/natural-language-classifier/api/v1/): SDK code examples and reference
 * [API Explorer](https://watson-api-explorer.mybluemix.net/apis/natural-language-classifier-v1): Try out the API
 * [Creating your own classifier](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/nl-classifier/get_start.shtml): How to use the API to create and use your own classifier
 * [Understanding how Dialog uses the output from the Natural Language Classifier](http://heidloff.net/article/cognitive-question-answer-systems-bluemix-watson)
+
+## User interface in this sample application
+
+The user interface that this sample application provides is intended as an example, and is not proposed as the user interface for your applications. However, if you want to use this user interface, you will want to modify the following files:
+
+* `ui/modules/home.html` - Contains the values in the footer that is displayed on the landing page. By default, these are IBM-specific values because they are used in the running instance of this sample application.
+* `ui/modules/dialog.html` - Contains the values in the footer that are displayed on conversation pages. By default, these are IBM-specific values because they are used in the running instance of this sample application.
+* `ui/styles/main.css` - Identifies the graphcis files that are displayed on the landing and conversation pages
+* `ui/images/Header_web_home.svg` - Contains the graphic that is displayed by default on the landing page
+* `ui/images/Header_web_chat.svg` - Contains the graphic that is displayed by default on conversation pages
 
 ## Troubleshooting
 
