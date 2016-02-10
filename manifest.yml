@@ -11,7 +11,7 @@ applications:
 - services:
   - dialog-service
   - classifier-service
-  name: application-name
+  name: movie-assistant
   command: npm start
   path: .
   memory: 512M
