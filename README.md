@@ -255,8 +255,8 @@ The following links provide more information about the Dialog and Natural Langua
 
 The user interface that this sample application provides is intended as an example, and is not proposed as the user interface for your applications. However, if you want to use this user interface, you will want to modify the following files:
 
-* `ui/modules/home.html` - Contains the values in the footer that is displayed on the landing page. By default, these are IBM-specific values because they are used in the running instance of this sample application.
-* `ui/modules/dialog.html` - Contains the values in the footer that are displayed on conversation pages. By default, these are IBM-specific values because they are used in the running instance of this sample application.
+* `ui/modules/home.html` - Contains the values in the footer that is displayed on the landing page. By default, these are IBM-specific values because they are used in the running instance of this sample application. For example, the Terms and Conditions do not apply to your use of the source code, to which the [Apache license](#license) applies.
+* `ui/modules/dialog.html` - Contains the values in the footer that are displayed on conversation pages. By default, these are IBM-specific values because they are used in the running instance of this sample application. For example, the Terms and Conditions do not apply to your use of the source code, to which the [Apache license](#license) applies
 * `ui/styles/main.css` - Identifies the graphcis files that are displayed on the landing and conversation pages
 * `ui/images/Header_web_home.svg` - Contains the graphic that is displayed by default on the landing page
 * `ui/images/Header_web_chat.svg` - Contains the graphic that is displayed by default on conversation pages
