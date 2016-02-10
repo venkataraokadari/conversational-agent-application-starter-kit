@@ -32,14 +32,14 @@ module.exports = function() {
         total_movies: 3,
         curent_index: 3,
         movies: [{
-          movie_id: 140607,
-          movie_name: 'Star Wars: The Force Awakens'
+          movie_id: 0,
+          movie_name: 'MOCK: Star Wars: The Force Awakens'
         }, {
-          movie_id: 365222,
-          movie_name: 'Ip Man 3'
+          movie_id: 1,
+          movie_name: 'MOCK: Zoolander 2'
         }, {
-          movie_id: 140300,
-          movie_name: 'Kung Fu Panda 3'
+          movie_id: 2,
+          movie_name: 'MOCK: Batman v Superman'
         }]
       };
       return callback(null, results);
@@ -49,10 +49,10 @@ module.exports = function() {
      * Returns movie information based on the movie_id
      */
     getMovieInformation: function(params, callback) {
-      var movie= {
+      var movies = [{
         fake: true,
-        movie_id: 140607,
-        movie_name: 'Star Wars: The Force Awakens',
+        movie_id: 0,
+        movie_name: 'MOCK: Star Wars: The Force Awakens',
         runtime: 136,
         popularity: 8.5,
         poster_path: 'http://image.tmdb.org/t/p/w300//fYzpM9GmpBlIC893fNjoWCwE24H.jpg',
@@ -61,9 +61,33 @@ module.exports = function() {
         release_date: '2015-12-14',
         overview: 'This is static information, check the README file in Github to '+
         'know how to use real data from themoviedb.com'
-      };
-
-      return callback(null, movie);
+      }, {
+        fake: true,
+        movie_id: 1,
+        movie_name: 'MOCK: Zoolander 2',
+        runtime: 100,
+        popularity: 4.2,
+        poster_path: 'http://image.tmdb.org/t/p/w300//fnY5UDKdopZnGvzgbJIz9fAFImx.jpg',
+        trailer_url: 'https://www.youtube.com/embed/U-CNKSzxIXM?controls=0&amp;showinfo=0',
+        certification: '',
+        release_date: '2016-02-12',
+        overview: 'This is static information, check the README file in Github to '+
+        'know how to use real data from themoviedb.com'
+      }, {
+        fake: true,
+        movie_id: 2,
+        movie_name: 'MOCK: Batman v Superman',
+        runtime: 145,
+        popularity: 7.5,
+        poster_path: 'http://image.tmdb.org/t/p/w300//eJrlh2g9UGAd7R6mQAOQIIs329H.jpg',
+        trailer_url: 'https://www.youtube.com/embed/nIGtF3J5kn8?controls=0&amp;showinfo=0',
+        certification: '',
+        release_date: '2016-01-05',
+        overview: 'This is static information, check the README file in Github to '+
+        'know how to use real data from themoviedb.com'
+      }
+    ];
+    return callback(null, movies[params.movie_id]);
     }
   };
 };
