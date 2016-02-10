@@ -53,6 +53,7 @@ app.post('/api/create_conversation', function(req, res, next) {
 
 // converse
 app.post('/api/conversation', function(req, res, next) {
+  log('--------------------------');
   log('1. classifying user intent');
   getIntent({ text: req.body.input })
   .then(function(result) {
