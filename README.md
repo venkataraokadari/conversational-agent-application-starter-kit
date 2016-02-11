@@ -148,7 +148,7 @@ First, make sure that you followed steps 1 through 9 in the [previous section](#
     ```sh
     $ cf env <application-name>
     ```
-   Your output should look similar to:
+   Your output should contain a section like the following:
 
     ```sh
     System-Provided:
@@ -257,9 +257,11 @@ The user interface that this sample application provides is intended as an examp
 
 * `ui/modules/home.html` - Contains the values in the footer that is displayed on the landing page. By default, these are IBM-specific values because they are used in the running instance of this sample application. For example, the Terms and Conditions do not apply to your use of the source code, to which the [Apache license](#license) applies.
 * `ui/modules/dialog.html` - Contains the values in the footer that are displayed on conversation pages. By default, these are IBM-specific values because they are used in the running instance of this sample application. For example, the Terms and Conditions do not apply to your use of the source code, to which the [Apache license](#license) applies
-* `ui/styles/main.css` - Identifies the graphcis files that are displayed on the landing and conversation pages
-* `ui/images/Header_web_home.svg` - Contains the graphic that is displayed by default on the landing page
-* `ui/images/Header_web_chat.svg` - Contains the graphic that is displayed by default on conversation pages
+* `ui/styles/main.css` - Identifies the graphics files that are displayed on the landing and conversation pages
+* `ui/images/Header_web_home.svg` - Contains the graphic that is displayed by default on the landing page on standard web clients
+* `ui/images/Header_web_chat.svg` - Contains the graphic that is displayed by default on conversation pages on standard web clients
+* `ui/images/Header_mobile_home.svg` - Contains the graphic that is displayed by default on the landing page on mobile devices
+* `ui/images/Header_mobile_chat.svg` - Contains the graphic that is displayed by default on conversation pages on mobile devices
 
 ## Troubleshooting
 
