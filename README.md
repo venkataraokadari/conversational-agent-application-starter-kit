@@ -4,7 +4,7 @@ This application is an **Application Starter Kit** (ASK) that is designed to get
 
 Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, which then deploys your own copy of this application on Bluemix automtically:
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/germanattanasio/movie-assistant)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/conversational-agent-application-starter-kit)
 
 **IMPORTANT:**
   1. The application uses mock data for movie suggestions until you provide an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api) in your application's source code, which you can not do when using the **Deploy to Bluemix** button. See [step 9](#step9) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
