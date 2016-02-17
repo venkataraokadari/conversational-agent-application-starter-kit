@@ -20,6 +20,7 @@ var express  = require('express'),
   app        = express(),
   extend     = require('util')._extend,
   pkg        = require('./package.json'),
+  training   = require('./training/setup'),
   Q          = require('q');
 
 
@@ -37,10 +38,10 @@ var apis = null;
 var converse, updateProfile, getIntent, searchMovies, getMovieInformation = null;
 
 // train the service and create the promises with the result
-var exec = require('child_process').exec;
-exec('npm run train', function(err) {
-	if (err)
-    console.log(err);
+training.train(function(err) {
+	if (err){
+    console.log('ERROR:', err.error);
+  }
 
   apis = require('./api/services');
 
@@ -50,8 +51,6 @@ exec('npm run train', function(err) {
   searchMovies = Q.nfbind(apis.movieDB.searchMovies.bind(apis.movieDB));
   getMovieInformation = Q.nfbind(apis.movieDB.getMovieInformation.bind(apis.movieDB));
 });
-
-
 
 // create the conversation
 app.post('/api/create_conversation', function(req, res, next) {
