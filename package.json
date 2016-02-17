@@ -19,13 +19,13 @@
   },
   "scripts": {
     "start": "node app.js",
-    "postinstall": "gulp build",
-    "train": "node ./training/setup.js"
+    "postinstall": "gulp build"
   },
   "engines": {
     "node": "4.2.1"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "body-parser": "^1.13.2",
     "errorhandler": "^1.4.1",
     "express": "^4.12.2",
