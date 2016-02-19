@@ -177,13 +177,19 @@ First, make sure that you followed steps 1 through 9 in the [previous section](#
     ```sh
     $ npm install
     ```
+    
+  4. Install Gulp globally if not already
 
-  4. Start the application by running:
+    ```sh
+    $ npm install -g gulp
+    ```
+  
+  5. Start the application by running:
 
     ```sh
     $ gulp
     ```
-  5. Open [http://localhost:5000](http://localhost:5000) to see the running application.
+  6. Open [http://localhost:5000](http://localhost:5000) to see the running application.
 
 ## About the Conversational Agent pattern
 
