@@ -11,7 +11,7 @@ You can see a version of this app that is already running by clicking
 [here](https://audio-analysis-application-starter-kit.mybluemix.net/).
 
 **IMPORTANT:**
-  1. The application uses mock data for movie suggestions until you provide an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api) in your application's source code, which you can not do when using the **Deploy to Bluemix** button. See [step 9](#step9) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
+  1. The application uses mock data for movie suggestions until you provide an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api) in your application's source code, which you can not do when using the **Deploy to Bluemix** button. See [step 10](#step10) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
   2. When the application is first run, it will automatically train a classifier for the Natural Language Classifier service. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
@@ -56,8 +56,10 @@ The following instructions explain how to [fork the project on GitHub](https://g
 
   4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
 
-  <a name="step5"></a>
-  5. Edit the `manifest.yml` file in the folder that contains your fork and replace `application-name` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `application-name.mybluemix.net`. The relevant portion of the `manifest.yml` file looks like the following:
+  5. If it is not already installed on your system, install Python from your system's repository or from the [Python.org site](https://www.python.org/downloads/release/python-2711/).
+
+  <a name="step6"></a>
+  6. Edit the `manifest.yml` file in the folder that contains your fork and replace `application-name` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `application-name.mybluemix.net`. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
     applications:
@@ -70,36 +72,36 @@ The following instructions explain how to [fork the project on GitHub](https://g
       memory: 512M
     ```
 
-  6. Connect to Bluemix by running the following commands in a terminal window:
+  7. Connect to Bluemix by running the following commands in a terminal window:
 
     ```sh
     $ cf api https://api.ng.bluemix.net
     $ cf login -u <your-Bluemix-ID> -p <your-Bluemix-password>
     ```
 
-  7. Create an instance of the Dialog service in Bluemix by running the following command:
+  8. Create an instance of the Dialog service in Bluemix by running the following command:
 
     ```sh
     $ cf create-service dialog standard dialog-service
     ```
     **Note:** You will see a message that states "Attention: The plan `standard` of service `dialog` is not free.  The instance `dialog-service` will incur a cost.  Contact your administrator if you think this is in error.". The first 1000 API calls per month to the Dialog service are free under the standard plan, so there will be no charge if you remain below this limit.
 
-  8. Create an instance of the Natural Language Classifier service in Bluemix by running the following command:
+   9. Create an instance of the Natural Language Classifier service in Bluemix by running the following command:
 
     ```sh
     $ cf create-service natural_language_classifier standard classifier-service
     ```
     **Note:** You will see a message that states "Attention: The plan `standard` of service `natural_language_classifier` is not free.  The instance `classifier-service` will incur a cost.  Contact your administrator if you think this is in error.". The first NLC instance that you create is free under the standard plan, so there will be no chanrge if you only create a single classifier instance for use by this application.
 
-  <a name="step9"></a>
-  9. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key].
+  <a name="step10"></a>
+  10. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key].
 
-  10. Add the API key from [themoviedb.com][the_movie_db] to the app by editing the line 29 of the file `api/services.js` to read:
+  11. Add the API key from [themoviedb.com][the_movie_db] to the app by editing the line 29 of the file `api/services.js` to read:
 
     ```js
     var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your themoviedb.com API Key>;
   	```
-  11. Push the updated application live by running the following command:
+  12. Push the updated application live by running the following command:
 
     ```sh
     $ cf push
@@ -110,7 +112,7 @@ The first time it runs, the application can take up to 20 minutes to train the c
   * A dialog flow using: `training/dialog_and_classifier.xml` and writes the dialog id to the file `/training/dialog_id`
   * A classifier using: `training/classifier_training.csv` and writes classifier id to the file `/training/classifier_id`
 
-You should not need to reference these, but if you do, you can retrieve these ids at `application-name.mybluemix.net/api/services`, where `application-name` is the name that you gave your application in [step 5](#step5) of the previous list. The response will be similar to:
+You should not need to reference these, but if you do, you can retrieve these ids at `application-name.mybluemix.net/api/services`, where `application-name` is the name that you gave your application in [step 6](#step6) of the previous list. The response will be similar to:
 
 ```json
 {
@@ -177,13 +179,13 @@ First, make sure that you followed steps 1 through 9 in the [previous section](#
     ```sh
     $ npm install
     ```
-    
+
   4. Install Gulp globally if not already
 
     ```sh
     $ npm install -g gulp
     ```
-  
+
   5. Start the application by running:
 
     ```sh
