@@ -123,7 +123,7 @@ You should not need to reference these, but if you do, you can retrieve these id
 
 ## Running the application locally
 
-First, make sure that you followed steps 1 through 9 in the [previous section](#getting-started) and that you are still logged in to Bluemix. Next:
+First, make sure that you followed steps 1 through 11 in the [previous section](#getting-started) and that you are still logged in to Bluemix. Next:
 
   1. Create a `.env.js` file in the root directory of the project with the following content:
 
