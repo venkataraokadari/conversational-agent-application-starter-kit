@@ -54,7 +54,7 @@ The following instructions explain how to [fork the project on GitHub](https://g
 
   3. If it is not already installed on your system, download and install the [Cloud-foundry CLI][cloud_foundry] tool.
 
-  4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
+  4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.  Make sure to use node version ```4.2.1``` as specified in ```package.json``` or you may run into problems like installation issues.
 
   5. If it is not already installed on your system, install Python from your system's repository or from the [Python.org site](https://www.python.org/downloads/release/python-2711/).
 
