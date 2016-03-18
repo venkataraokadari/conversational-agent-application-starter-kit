@@ -46,7 +46,7 @@ The application is written in [Node.js](http://nodejs.org/) and uses [npm](https
 
 **Important:** If you used the `Deploy to Bluemix` button to deploy an instance of this application to Bluemix automatically, you will have to delete that application and the services that it used before you can build and deploy an application manually. You can use the `cf apps` command to see the instances of the Dialog and NLC services that your application uses, use the `cf delete application-name` command to delete the application, and use the `cf delete-services service-name` command to delete each of the Dialog and NLC service instance that the application used.
 
-The following instructions explain how to [fork the project on GitHub](https://github.com/watson-developer-cloud/conversational-agent-application-starter-kit#fork-destination-box) and push that fork to Bluemix using the `cf` command-line interface (CLI) for Cloud Foundry. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
+The following instructions explain how to [fork the project on GitHub](https://help.github.com/articles/fork-a-repo/) and push that fork to Bluemix using the `cf` command-line interface (CLI) for Cloud Foundry. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
 
   1. Log into GitHub and fork the project repository. Clone your fork to a folder on your local system and change to that folder.
 
