@@ -8,7 +8,7 @@ Give it a try! Click the button below to fork the repository that contains the s
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/conversational-agent-application-starter-kit)
 
 You can see a version of this app that is already running by clicking
-[here](https://audio-analysis-application-starter-kit.mybluemix.net/).
+[here](https://conversational-agent-application-starter-kit.mybluemix.net/).
 
 **IMPORTANT:**
   1. The application uses mock data for movie suggestions until you provide an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api) in your application's source code, which you can not do when using the **Deploy to Bluemix** button. See [step 10](#step10) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
