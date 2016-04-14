@@ -11,7 +11,7 @@ applications:
 - services:
   - dialog-service
   - classifier-service
-  name: movie-assistant
+  name: vrk-movie-asst
   command: npm start
   path: .
   memory: 512M
